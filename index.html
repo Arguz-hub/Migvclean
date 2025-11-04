@@ -5,172 +5,236 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Panificadora Bustos</title>
 
-  <!-- META DE SEGURIDAD -->
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="X-Frame-Options" content="DENY">
-  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
-  <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; img-src 'self' https://raw.githubusercontent.com https://github.com data:; style-src 'self' 'unsafe-inline'; object-src 'none'; frame-ancestors 'none';">
-
-  <!-- ESTILOS PROPIOS -->
   <style>
     :root {
-      --amber-100: #fde68a;
-      --amber-200: #fcd34d;
-      --amber-500: #f59e0b;
-      --amber-600: #d97706;
-      --amber-800: #92400e;
-      --gray-800: #1f2937;
-      --gray-600: #4b5563;
-      --yellow-50: #fffbeb;
+      --amber-800: #6b3d0c;
+      --gray-700: #4b5563;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      background-color: var(--yellow-50);
-      color: var(--gray-800);
-      margin: 0;
-      font-family: 'Segoe UI', Roboto, sans-serif;
-      line-height: 1.6;
+      font-family: 'Poppins', sans-serif;
+      color: var(--gray-700);
+      scroll-behavior: smooth;
     }
 
-    header {
-      background-color: var(--amber-200);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    /* ====== LANDING HERO ====== */
+    .landing {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background-image: url('img/pedido.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: background-image 0.8s ease-in-out;
+      position: relative;
+      overflow: hidden;
+      color: #fff;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem;
+    .landing .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 1;
+    }
+
+    .landing .contenedor {
+      text-align: left;
+      margin-left: 8%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .landing h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin: 0.4em 0;
+      cursor: pointer;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .landing h1:hover {
+      transform: translateX(8px);
+      color: #f5d48a;
+    }
+
+    .landing header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #d7b46a;
+      color: #4b2e0e;
+      text-align: center;
+      padding: 5px 0;
+      font-size: 13px;
+      letter-spacing: 0.4px;
+      z-index: 100;
+    }
+
+    /* ====== NUEVA DECORACIÓN CON ONDA ====== */
+    .decoracion {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      line-height: 0;
+      overflow: hidden;
+      z-index: 3;
+    }
+
+    .decoracion svg {
+      position: relative;
+      display: block;
+      width: calc(130% + 1.3px);
+      height: 100px;
+      transform: rotate(180deg);
+    }
+
+    .decoracion path {
+      fill: #ffffff;
+      animation: waveMove 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes waveMove {
+      0% {
+        d: path("M0,64 C150,100 350,0 500,64 L500,0 L0,0 Z");
+      }
+      100% {
+        d: path("M0,64 C150,80 350,20 500,64 L500,0 L0,0 Z");
+      }
+    }
+
+    /* ====== NAVBAR PRINCIPAL ====== */
+    header.main {
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 0.5rem 2rem;
+    }
+
+    header.main h1 {
+      color: var(--amber-800);
+      font-size: 1.5rem;
+      font-weight: bold;
     }
 
     nav a {
-      margin-left: 1.5rem;
-      color: var(--gray-800);
       text-decoration: none;
-      font-size: 1.125rem;
+      color: var(--amber-800);
+      font-weight: 600;
+      margin: 0 1rem;
+      transition: color 0.3s;
     }
 
     nav a:hover {
-      color: var(--amber-600);
+      color: #d7b46a;
     }
 
-    /* HERO */
-    #inicio {
-      position: relative;
-      background-image: url('https://raw.githubusercontent.com/Arguz-hub/Panificadora/main/Banner.png');
-      background-size: cover;
-      background-position: top;
-      height: 500px;
-    }
-
-    #inicio .overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.3);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: white;
-    }
-
-    .btn {
-      background: var(--amber-500);
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.75rem;
-      color: white;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.2s ease;
-      display: inline-block;
-    }
-
-    .btn:hover {
-      background: var(--amber-600);
-    }
-
-    /* SECCIONES */
+    /* ====== SECCIONES ====== */
     section {
-      padding: 4rem 1rem;
+      padding: 4rem 1.5rem;
+      text-align: center;
     }
 
-    h3 {
-      font-size: 1.875rem;
-      font-weight: bold;
-      text-align: center;
+    section h3 {
+      font-size: 2rem;
       color: var(--amber-800);
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .productos {
       display: grid;
-      gap: 2rem;
-    }
-
-    @media (min-width: 768px) {
-      .productos {
-        grid-template-columns: repeat(3, 1fr);
-      }
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .card {
-      background: white;
-      border-radius: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      background: #fff;
+      border-radius: 12px;
       overflow: hidden;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
       transition: transform 0.3s;
     }
 
     .card:hover {
-      transform: scale(1.05);
+      transform: translateY(-5px);
     }
 
     .card img {
       width: 100%;
-      height: 12rem;
+      height: 220px;
       object-fit: cover;
     }
 
     .card .content {
-      padding: 1.25rem;
+      padding: 1rem;
     }
 
     .card h4 {
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .card p {
-      color: var(--gray-600);
-      font-size: 1rem;
-    }
-
-    #nosotros {
-      background: var(--amber-100);
-      text-align: center;
-    }
-
-    #contacto p {
-      font-size: 1.125rem;
+      color: var(--amber-800);
       margin-bottom: 0.5rem;
     }
 
     footer {
-      background: var(--amber-800);
-      color: var(--yellow-50);
+      background-color: var(--amber-800);
+      color: #fff;
       text-align: center;
       padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .landing h1 {
+        font-size: 2rem;
+      }
+      .landing .contenedor {
+        margin-left: 5%;
+      }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- LANDING HERO -->
+  <div class="landing" id="inicio">
+    <header>💛 Realiza tu pedido con anticipación — Entregas de 8 AM a 5 PM.</header>
+
+    <div class="overlay"></div>
+
+    <div class="contenedor">
+      <h1 data-bg="https://github.com/Arguz-hub/Panificadora/raw/main/Banner.png">NOSOTROS</h1>
+      <h1 data-bg="https://github.com/Arguz-hub/Panificadora/raw/main/Frica.jpg">NUESTROS PRODUCTOS</h1>
+      <h1 data-bg="https://github.com/Arguz-hub/Panificadora/raw/main/Hallulla%20integral.jpg">CONÓCENOS</h1>
+      <h1 data-bg="https://github.com/Arguz-hub/Panificadora/Raw/main/Pan%20de%20completo.png">ESCRÍBENOS AL CORREO</h1>
+    </div>
+
+    <!-- Onda decorativa -->
+    <div class="decoracion">
+      <svg viewBox="0 0 500 100" preserveAspectRatio="none">
+        <path d="M0,64 C150,100 350,0 500,64 L500,0 L0,0 Z"></path>
+      </svg>
+    </div>
+  </div>
+
   <!-- NAVBAR -->
-  <header>
-    <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
-      <h1 style="font-size:1.5rem;font-weight:bold;color:var(--amber-800);">🥖 Panificadora Bustos</h1>
+  <header class="main">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;">
+      <h1>🥖 Panificadora Bustos</h1>
       <nav>
         <a href="#productos">Productos</a>
         <a href="#nosotros">Nosotros</a>
@@ -179,22 +243,10 @@
     </div>
   </header>
 
-  <!-- HERO -->
-  <section id="inicio">
-    <div class="overlay">
-      <div>
-        <h2 style="font-size:2.5rem;font-weight:bold;margin-bottom:1rem;">La Tradición se hornea aquí</h2>
-        <p style="font-size:1.25rem;margin-bottom:1.5rem;">Pan horneado directo a tu mesa</p>
-        <a href="#productos" class="btn">Ver Productos</a>
-      </div>
-    </div>
-  </section>
-
   <!-- PRODUCTOS -->
   <section id="productos">
     <h3>Nuestros Productos</h3>
     <div class="productos">
-      <!-- Hallulla -->
       <div class="card">
         <img src="https://github.com/Arguz-hub/Panificadora/raw/main/hallulla.jpg" alt="Hallulla">
         <div class="content">
@@ -202,8 +254,6 @@
           <p>Hallulla corriente, suave y dorada.</p>
         </div>
       </div>
-
-      <!-- Marraqueta -->
       <div class="card">
         <img src="https://github.com/Arguz-hub/Panificadora/raw/main/Marraqueta.jpeg" alt="Marraqueta">
         <div class="content">
@@ -211,8 +261,6 @@
           <p>Marraqueta corriente, crujiente y tradicional.</p>
         </div>
       </div>
-
-      <!-- Hallulla Integral -->
       <div class="card">
         <img src="https://github.com/Arguz-hub/Panificadora/raw/main/Hallulla%20integral.jpg" alt="Hallulla Integral">
         <div class="content">
@@ -220,8 +268,6 @@
           <p>Hallulla integral elaborada con harina 100% integral.</p>
         </div>
       </div>
-
-      <!-- Colisa -->
       <div class="card">
         <img src="https://github.com/Arguz-hub/Panificadora/raw/main/Coliza.jpeg" alt="Colisa">
         <div class="content">
@@ -229,8 +275,6 @@
           <p>Pan colisa de miga suave, perfecto para acompañar tus comidas.</p>
         </div>
       </div>
-
-      <!-- Pan de Completo -->
       <div class="card">
         <img src="https://github.com/Arguz-hub/Panificadora/raw/main/Pan%20de%20completo.png" alt="Pan de Completo">
         <div class="content">
@@ -238,8 +282,6 @@
           <p>Pan suave y firme, ideal para completos o hot dogs.</p>
         </div>
       </div>
-
-      <!-- Frica -->
       <div class="card">
         <img src="https://github.com/Arguz-hub/Panificadora/raw/main/Frica.jpg" alt="Pan Frica">
         <div class="content">
@@ -253,14 +295,14 @@
   <!-- NOSOTROS -->
   <section id="nosotros">
     <h3>Sobre Nosotros</h3>
-    <p style="max-width:700px;margin:0 auto;font-size:1.125rem;color:var(--gray-700);">
+    <p style="max-width:700px;margin:0 auto;font-size:1.125rem;">
       Somos una panificadora familiar con más de 20 años de experiencia, dedicada a elaborar productos frescos y deliciosos con ingredientes de la mejor calidad.  
       Nuestro compromiso es ofrecer sabor y calidez en cada pan que llega a tu mesa.
     </p>
   </section>
 
   <!-- CONTACTO -->
-  <section id="contacto" class="container">
+  <section id="contacto">
     <h3>Contáctanos</h3>
     <div style="display:grid;gap:1.5rem;max-width:800px;margin:0 auto;">
       <div>
@@ -274,23 +316,23 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>&copy; 2025 Panificadora Bustos. Todos los derechos reservados.</p>
+    &copy; 2025 Panificadora Bustos. Todos los derechos reservados.
   </footer>
+
+  <script>
+    // Cambia el fondo del landing al pasar el mouse sobre cada título
+    const titulos = document.querySelectorAll('.landing h1');
+    const landing = document.querySelector('.landing');
+
+    titulos.forEach(titulo => {
+      titulo.addEventListener('mouseenter', () => {
+        const nuevaImagen = titulo.getAttribute('data-bg');
+        landing.style.backgroundImage = `url('${nuevaImagen}')`;
+      });
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
