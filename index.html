@@ -4,106 +4,278 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Panificadora Bustos</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-yellow-50 text-gray-800">
 
+  <!-- META DE SEGURIDAD -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' https://raw.githubusercontent.com https://github.com data:; style-src 'self' 'unsafe-inline'; object-src 'none'; frame-ancestors 'none';">
+
+  <!-- ESTILOS PROPIOS -->
+  <style>
+    :root {
+      --amber-100: #fde68a;
+      --amber-200: #fcd34d;
+      --amber-500: #f59e0b;
+      --amber-600: #d97706;
+      --amber-800: #92400e;
+      --gray-800: #1f2937;
+      --gray-600: #4b5563;
+      --yellow-50: #fffbeb;
+    }
+
+    body {
+      background-color: var(--yellow-50);
+      color: var(--gray-800);
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--amber-200);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    nav a {
+      margin-left: 1.5rem;
+      color: var(--gray-800);
+      text-decoration: none;
+      font-size: 1.125rem;
+    }
+
+    nav a:hover {
+      color: var(--amber-600);
+    }
+
+    /* HERO */
+    #inicio {
+      position: relative;
+      background-image: url('https://raw.githubusercontent.com/Arguz-hub/Panificadora/main/Banner.png');
+      background-size: cover;
+      background-position: top;
+      height: 650px;
+    }
+
+    #inicio .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .btn {
+      background: var(--amber-500);
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: var(--amber-600);
+    }
+
+    /* SECCIONES */
+    section {
+      padding: 4rem 1rem;
+    }
+
+    h3 {
+      font-size: 1.875rem;
+      font-weight: bold;
+      text-align: center;
+      color: var(--amber-800);
+      margin-bottom: 2.5rem;
+    }
+
+    .productos {
+      display: grid;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .productos {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .card {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: 12rem;
+      object-fit: cover;
+    }
+
+    .card .content {
+      padding: 1.25rem;
+    }
+
+    .card h4 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: var(--gray-600);
+      font-size: 1rem;
+    }
+
+    #nosotros {
+      background: var(--amber-100);
+      text-align: center;
+    }
+
+    #contacto p {
+      font-size: 1.125rem;
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      background: var(--amber-800);
+      color: var(--yellow-50);
+      text-align: center;
+      padding: 1rem;
+    }
+  </style>
+</head>
+
+<body>
   <!-- NAVBAR -->
-  <header class="bg-yellow-200 shadow-md">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-amber-800">🥖 Panificadora Bustos</h1>
-      <nav class="space-x-6 text-lg">
-        <a href="#inicio" class="hover:text-amber-700">Inicio</a>
-        <a href="#productos" class="hover:text-amber-700">Productos</a>
-        <a href="#nosotros" class="hover:text-amber-700">Nosotros</a>
-        <a href="#contacto" class="hover:text-amber-700">Contacto</a>
+  <header>
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
+      <h1 style="font-size:1.5rem;font-weight:bold;color:var(--amber-800);">🥖 Panificadora Bustos</h1>
+      <nav>
+        <a href="#productos">Productos</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
       </nav>
     </div>
   </header>
 
-
-<!-- HERO -->
-<section id="inicio" 
-  class="relative bg-cover bg-top h-[650px] md:h-[800px]" 
-  style="background-image: url('https://raw.githubusercontent.com/Arguz-hub/Panificadora/main/Banner.png');">
-  
-  <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-    <div class="text-center text-white drop-shadow-lg">
-      <h2 class="text-4xl md:text-6xl font-bold mb-4">La Tradición se hornea aquí</h2>
-      <p class="text-lg md:text-xl mb-6">Pan horneado directo a tu mesa</p>
-      <a href="#productos" 
-         class="bg-amber-500 px-6 py-3 rounded-xl text-white font-semibold hover:bg-amber-600 transition">
-        Ver Productos
-      </a>
+  <!-- HERO -->
+  <section id="inicio">
+    <div class="overlay">
+      <div>
+        <h2 style="font-size:2.5rem;font-weight:bold;margin-bottom:1rem;">La Tradición se hornea aquí</h2>
+        <p style="font-size:1.25rem;margin-bottom:1.5rem;">Pan horneado directo a tu mesa</p>
+        <a href="#productos" class="btn">Ver Productos</a>
+      </div>
     </div>
-  </div>
-</section>
-  
+  </section>
 
   <!-- PRODUCTOS -->
-  <section id="productos" class="max-w-6xl mx-auto px-4 py-16">
-    <h3 class="text-3xl font-bold text-center text-amber-800 mb-10">Nuestros Productos</h3>
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:scale-110 transition">
-        <img src="https://github.com/Arguz-hub/Panificadora/raw/main/hallulla.jpg" class="w-full h-48 object-cover" alt="Pan artesanal">
-        <div class="p-5">
-          <h4 class="text-xl font-semibold mb-2">Hallulla</h4>
-          <p class="text-gray-600">Hallulla Corriente.</p>
+  <section id="productos">
+    <h3>Nuestros Productos</h3>
+    <div class="productos">
+      <!-- Hallulla -->
+      <div class="card">
+        <img src="https://github.com/Arguz-hub/Panificadora/raw/main/hallulla.jpg" alt="Hallulla">
+        <div class="content">
+          <h4>Hallulla</h4>
+          <p>Hallulla corriente, suave y dorada.</p>
         </div>
       </div>
 
-      <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:scale-110 transition">
-        <img src="https://github.com/Arguz-hub/Panificadora/raw/main/Marraqueta.jpeg" class="w-full h-48 object-cover" alt="Bollería dulce">
-        <div class="p-5">
-          <h4 class="text-xl font-semibold mb-2">Marraqueta</h4>
-          <p class="text-gray-600">Marraqueta Corriente.</p>
+      <!-- Marraqueta -->
+      <div class="card">
+        <img src="https://github.com/Arguz-hub/Panificadora/raw/main/Marraqueta.jpeg" alt="Marraqueta">
+        <div class="content">
+          <h4>Marraqueta</h4>
+          <p>Marraqueta corriente, crujiente y tradicional.</p>
         </div>
       </div>
 
-      <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:scale-110 transition">
-        <img src="https://github.com/Arguz-hub/Panificadora/raw/main/Hallulla%20integral.jpg" class="w-full h-48 object-cover" alt="Pasteles">
-        <div class="p-5">
-          <h4 class="text-xl font-semibold mb-2">Hallulla Integral</h4>
-          <p class="text-gray-600">Hallulla Integral.</p>
+      <!-- Hallulla Integral -->
+      <div class="card">
+        <img src="https://github.com/Arguz-hub/Panificadora/raw/main/Hallulla%20integral.jpg" alt="Hallulla Integral">
+        <div class="content">
+          <h4>Hallulla Integral</h4>
+          <p>Hallulla integral elaborada con harina 100% integral.</p>
+        </div>
+      </div>
+
+      <!-- Colisa -->
+      <div class="card">
+        <img src="https://github.com/Arguz-hub/Panificadora/raw/main/Colisa.jpg" alt="Colisa">
+        <div class="content">
+          <h4>Colisa</h4>
+          <p>Pan colisa de miga suave, perfecto para acompañar tus comidas.</p>
+        </div>
+      </div>
+
+      <!-- Pan de Completo -->
+      <div class="card">
+        <img src="https://github.com/Arguz-hub/Panificadora/raw/main/Pan%20de%20Completo.jpg" alt="Pan de Completo">
+        <div class="content">
+          <h4>Pan de Completo</h4>
+          <p>Pan suave y firme, ideal para completos o hot dogs.</p>
+        </div>
+      </div>
+
+      <!-- Frica -->
+      <div class="card">
+        <img src="https://github.com/Arguz-hub/Panificadora/raw/main/Frica.jpg" alt="Pan Frica">
+        <div class="content">
+          <h4>Frica</h4>
+          <p>Pan frica artesanal, de corteza dorada y miga aireada.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- NOSOTROS -->
-  <section id="nosotros" class="bg-amber-100 py-16">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-      <h3 class="text-3xl font-bold text-amber-800 mb-6">Sobre Nosotros</h3>
-      <p class="text-lg text-gray-700 max-w-3xl mx-auto">
-        Somos una panadería familiar con más de 20 años de experiencia, dedicada a elaborar productos frescos y deliciosos con ingredientes naturales.  
-        Nuestro compromiso es ofrecer calidad y calidez en cada pan que llega a tu mesa.
-      </p>
-    </div>
+  <section id="nosotros">
+    <h3>Sobre Nosotros</h3>
+    <p style="max-width:700px;margin:0 auto;font-size:1.125rem;color:var(--gray-700);">
+      Somos una panificadora familiar con más de 20 años de experiencia, dedicada a elaborar productos frescos y deliciosos con ingredientes de la mejor calidad.  
+      Nuestro compromiso es ofrecer sabor y calidez en cada pan que llega a tu mesa.
+    </p>
   </section>
 
   <!-- CONTACTO -->
-  <section id="contacto" class="max-w-6xl mx-auto px-4 py-16">
-    <h3 class="text-3xl font-bold text-center text-amber-800 mb-8">Contáctanos</h3>
-    <div class="grid md:grid-cols-2 gap-10">
-      <!--form class="bg-white shadow-lg p-6 rounded-2xl">
-        <input type="text" placeholder="Nombre" class="w-full mb-4 p-3 border rounded-lg" required>
-        <input type="email" placeholder="Correo" class="w-full mb-4 p-3 border rounded-lg" required>
-        <textarea placeholder="Mensaje" class="w-full mb-4 p-3 border rounded-lg h-32" required></textarea>
-        <button class="bg-amber-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-amber-600 transition">Enviar</button>
-      </form-->
-      <div class="flex flex-col justify-center">
-        <p class="text-lg mb-2"><strong>📍 Dirección:</strong> Santa Inés, Sitio 47, Calera de Tango</p>
-        <p class="text-lg mb-2"><strong>📞 Teléfono:</strong> +56 9 3429 7927</p>
-        <p class="text-lg mb-2"><strong>🕒 Horario:</strong> Lunes a viernes, 9:00 - 17:00</p>
+  <section id="contacto" class="container">
+    <h3>Contáctanos</h3>
+    <div style="display:grid;gap:1.5rem;max-width:800px;margin:0 auto;">
+      <div>
+        <p><strong>📍 Dirección:</strong> Santa Inés, Sitio 47, Calera de Tango</p>
+        <p><strong>📞 Teléfono:</strong> +56 9 3429 7927</p>
+        <p><strong>📧 Correo:</strong> panificadorabustos@hotmail.es</p>
+        <p><strong>🕒 Horario:</strong> Lunes a sábado de 6:00 a 20:00 hrs. - Domingo y festivos de 6:00 a 19:00 hrs.</p>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-amber-800 text-yellow-50 text-center py-4">
+  <footer>
     <p>&copy; 2025 Panificadora Bustos. Todos los derechos reservados.</p>
   </footer>
-
 </body>
 </html>
 
