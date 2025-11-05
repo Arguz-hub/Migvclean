@@ -6,12 +6,14 @@
   <title>Panificadora Bustos</title>
   <meta name="description" content="Panificadora Bustos — Pan fresco y artesanal en Calera de Tango. Marraquetas, hallullas, colisas, pan de completo y más.">
   <meta name="keywords" content="pan, panadería, marraqueta, hallulla, pan artesanal, Calera de Tango, Panificadora Bustos">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --amber-800: #6b3d0c;
       --amber-600: #d7b46a;
       --gray-700: #4b5563;
+      --gold: #ffd700;
     }
 
     * {
@@ -23,9 +25,63 @@
     body {
       font-family: 'Poppins', sans-serif;
       color: var(--gray-700);
-      scroll-behavior: smooth;
       background-color: #fffdf8;
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23f4e4bc" opacity="0.1"/></svg>');
+      scroll-behavior: smooth;
+      animation: fadeInBody 1s ease-in;
     }
+    @keyframes fadeInBody { from { opacity: 0; } to { opacity: 1; } }
+
+    /* ====== ENCABEZADO FIJO ====== */
+    header.top {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 2rem;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      z-index: 200;
+      transition: all 0.3s ease;
+      border-bottom: 3px solid var(--amber-600);
+    }
+
+    header.top img {
+      height: 45px;
+      width: auto;
+    }
+
+    header.top h1 {
+      font-family: 'Dancing Script', cursive;
+      color: var(--amber-800);
+      font-size: 1.8rem;
+      margin-left: 10px;
+    }
+
+    header.top nav a {
+      text-decoration: none;
+      color: var(--amber-800);
+      font-weight: 600;
+      margin: 0 1rem;
+      transition: all 0.3s;
+      position: relative;
+    }
+    header.top nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+    header.top nav a:hover::after { width: 100%; }
+    header.top nav a:hover { color: var(--amber-600); transform: translateY(-2px); }
 
     /* ====== HERO ====== */
     .landing {
@@ -39,12 +95,13 @@
       position: relative;
       color: #fff;
       transition: background-image 0.8s ease-in-out;
+      overflow: hidden;
     }
 
     .overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.45);
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.45), rgba(107, 61, 12, 0.3));
       z-index: 1;
     }
 
@@ -61,25 +118,36 @@
       margin: 0.4em 0;
       cursor: pointer;
       text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
-      transition: transform 0.3s, color 0.3s;
+      transition: all 0.4s ease;
+      position: relative;
+      animation: slideInLeft 1s ease-out forwards;
+      opacity: 0;
     }
+    .landing h1:nth-child(1) { animation-delay: 0.2s; }
+    .landing h1:nth-child(2) { animation-delay: 0.4s; }
+    .landing h1:nth-child(3) { animation-delay: 0.6s; }
+    .landing h1:nth-child(4) { animation-delay: 0.8s; }
+    @keyframes slideInLeft { from { transform: translateX(-50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
     .landing h1:hover {
-      transform: translateX(8px);
-      color: #f5d48a;
+      transform: translateX(12px) scale(1.05);
+      color: var(--gold);
+      text-shadow: 3px 3px 8px rgba(255, 215, 0, 0.6);
     }
 
-    header.banner {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: var(--amber-600);
-      color: #4b2e0e;
-      text-align: center;
-      padding: 6px 0;
-      font-size: 13px;
-      z-index: 100;
-      letter-spacing: 0.5px;
+    .landing h1::before {
+      content: '🍞';
+      position: absolute;
+      left: -40px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .landing h1:hover::before {
+      opacity: 1;
+      transform: translateY(-50%) rotate(10deg);
     }
 
     .decoracion {
@@ -87,60 +155,36 @@
       bottom: 0;
       width: 100%;
       line-height: 0;
+      animation: wave 3s ease-in-out infinite;
     }
-
-    .decoracion svg {
-      width: 100%;
-      height: 100px;
-      transform: rotate(180deg);
-    }
-
-    .decoracion path {
-      fill: #ffffff;
-    }
-
-    /* ====== NAVBAR ====== */
-    header.main {
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      padding: 0.8rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    header.main h1 {
-      color: var(--amber-800);
-      font-size: 1.6rem;
-      font-weight: bold;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: var(--amber-800);
-      font-weight: 600;
-      margin: 0 1rem;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: var(--amber-600);
-    }
+    @keyframes wave { 0%, 100% { transform: translateY(0) rotate(180deg); } 50% { transform: translateY(-10px) rotate(180deg); } }
+    .decoracion svg { width: 100%; height: 100px; }
+    .decoracion path { fill: #ffffff; }
 
     /* ====== SECCIONES ====== */
     section {
       padding: 4rem 1.5rem;
       text-align: center;
+      position: relative;
+    }
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--amber-600));
+      border-radius: 2px;
     }
 
     section h3 {
       font-size: 2rem;
       color: var(--amber-800);
       margin-bottom: 1.5rem;
+      font-family: 'Dancing Script', cursive;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
 
     .productos {
@@ -156,42 +200,51 @@
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
+      transition: all 0.4s ease;
+      position: relative;
     }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, rgba(255,215,0,0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .card:hover { transform: translateY(-8px) rotate(1deg); box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
+    .card:hover::before { opacity: 1; }
 
-    .card:hover {
-      transform: translateY(-5px);
-    }
+    .card img { width: 100%; height: 220px; object-fit: cover; transition: transform 0.3s; }
+    .card:hover img { transform: scale(1.05); }
 
-    .card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-
-    .card .content {
-      padding: 1rem;
-    }
-
-    .card h4 {
-      color: var(--amber-800);
-      margin-bottom: 0.5rem;
-    }
+    .card .content { padding: 1rem; }
+    .card h4 { color: var(--amber-800); margin-bottom: 0.5rem; }
 
     footer {
-      background-color: var(--amber-800);
+      background: linear-gradient(135deg, var(--amber-800), #4b2e0e);
       color: #fff;
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
+      position: relative;
     }
+    footer::before {
+      content: '🥖';
+      font-size: 2em;
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-5px); } }
 
     /* ====== BOTÓN WHATSAPP ====== */
     .whatsapp-float {
       position: fixed;
       bottom: 25px;
       right: 25px;
-      background-color: #25D366;
+      background: linear-gradient(135deg, #25D366, #128C7E);
       border-radius: 50%;
       width: 60px;
       height: 60px;
@@ -199,32 +252,35 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-      z-index: 200;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 300;
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
     }
-
-    .whatsapp-float:hover {
-      transform: scale(1.1);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
-    }
-
-    .whatsapp-float svg {
-      width: 35px;
-      height: 35px;
-      fill: white;
-    }
+    @keyframes pulse { 0%, 100% { box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2); } 50% { box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); } }
+    .whatsapp-float:hover { transform: scale(1.1); }
+    .whatsapp-float svg { width: 35px; height: 35px; fill: white; }
 
     @media (max-width: 768px) {
-      .landing h1 {
-        font-size: 2rem;
-      }
+      .landing h1 { font-size: 2rem; }
+      header.top nav a { margin: 0 0.5rem; }
     }
   </style>
 </head>
 
 <body>
-  <!-- BANNER -->
-  <header class="banner">💛 Realiza tu pedido con anticipación — Entregas de 8 AM a 5 PM.</header>
+  <!-- ENCABEZADO FIJO -->
+  <header class="top">
+    <div style="display:flex;align-items:center;">
+      <img src="logo.png" alt="Logo Panificadora Bustos">
+      <h1>Panificadora Bustos</h1>
+    </div>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
 
   <!-- HERO -->
   <div class="landing" id="inicio">
@@ -241,16 +297,6 @@
       </svg>
     </div>
   </div>
-
-  <!-- NAVBAR -->
-  <header class="main">
-    <h1>🥖 Panificadora Bustos</h1>
-    <nav>
-      <a href="#productos">Productos</a>
-      <a href="#nosotros">Nosotros</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-  </header>
 
   <!-- PRODUCTOS -->
   <section id="productos">
@@ -313,33 +359,33 @@
   <!-- CONTACTO -->
   <section id="contacto">
     <h3>Contáctanos</h3>
-    <div style="max-width:800px;margin:0 auto;text-align:left;font-size:1rem;">
-      <p><strong>📍 Dirección:</strong> Santa Inés, Sitio 47, Calera de Tango</p>
-      <p><strong>📞 Teléfono:</strong> +56 9 3429 7927</p>
-      <p><strong>📧 Correo:</strong> panificadorabustos@hotmail.es</p>
-      <p><strong>🕒 Horario:</strong> Lunes a sábado de 6:00 a 20:00 hrs. — Domingo y festivos de 6:00 a 19:00 hrs.</p>
-    </div>
+    <p><strong>📍 Dirección:</strong> Santa Inés, Calera de Tango</p>
+    <p><strong>📞 Teléfono:</strong> +56 9 3429 7927</p>
+    <p><strong>📧 Correo:</strong> contacto@panificadorabustos.cl</p>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    &copy; 2025 Panificadora Bustos. Todos los derechos reservados.
+    © 2025 Panificadora Bustos — Tradición y Sabor Familiar
   </footer>
 
   <!-- BOTÓN WHATSAPP -->
-  <a href="https://wa.me/56934297927?text=Hola%2C%20quisiera%20hacer%20un%20pedido%20🍞" class="whatsapp-float" target="_blank" aria-label="Chatear por WhatsApp">
+  <a href="https://wa.me/56934297927?text=Hola%20Panificadora%20Bustos,%20quiero%20hacer%20un%20pedido%20de%20pan."
+     class="whatsapp-float"
+     target="_blank"
+     title="Chatea con nosotros por WhatsApp">
     <svg viewBox="0 0 32 32">
-      <path d="M16 0C7.164 0 0 7.164 0 16c0 2.828.736 5.58 2.131 8.008L0 32l8.261-2.087A15.91 15.91 0 0 0 16 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.333c-2.46 0-4.878-.648-6.994-1.878l-.5-.295-4.9 1.238 1.302-4.768-.325-.52A13.27 13.27 0 0 1 2.667 16C2.667 8.64 8.64 2.667 16 2.667S29.333 8.64 29.333 16 23.36 29.333 16 29.333zm7.257-9.423c-.398-.199-2.35-1.158-2.714-1.29-.364-.133-.63-.199-.895.199-.265.398-1.026 1.29-1.26 1.555-.232.265-.465.299-.863.1-.398-.2-1.68-.619-3.2-1.975-1.183-1.056-1.98-2.358-2.213-2.756-.232-.398-.025-.613.174-.812.179-.178.398-.465.597-.697.199-.232.265-.398.398-.663.133-.266.066-.498-.033-.697-.1-.199-.894-2.158-1.226-2.958-.323-.777-.653-.674-.895-.674h-.764c-.266 0-.698.1-1.064.498-.366.398-1.398 1.365-1.398 3.326s1.433 3.861 1.631 4.125c.199.265 2.819 4.305 6.834 6.034 4.015 1.73 4.015 1.154 4.739 1.085.724-.066 2.35-.955 2.681-1.878.33-.922.33-1.714.232-1.878-.1-.165-.365-.265-.763-.464z"/>
+      <path d="M16 .6C7.5.6.6 7.5.6 16c0 2.8.8 5.5 2.2 7.9L0 32l8.4-2.2c2.3 1.3 5 2 7.8 2 8.5 0 15.4-6.9 15.4-15.4S24.5.6 16 .6zm0 28.2c-2.4 0-4.8-.6-6.9-1.8l-.5-.3-5 1.3 1.3-4.9-.3-.5c-1.4-2.1-2.1-4.6-2.1-7.1C2.5 8.5 8.6 2.5 16 2.5s13.5 6.1 13.5 13.5-6 12.8-13.5 12.8zm7.5-9.5c-.4-.2-2.3-1.1-2.6-1.2-.3-.1-.5-.2-.7.2s-.8 1.2-1 1.4c-.2.2-.4.3-.8.1s-1.5-.6-2.9-1.9c-1.1-1-1.9-2.3-2.1-2.7s0-.6.2-.8.5-.5.7-.7c.2-.2.3-.4.5-.7.2-.2.1-.5 0-.7-.1-.2-.7-1.8-1-2.4-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.7.1-1.1.5s-1.4 1.3-1.4 3.2 1.4 3.8 1.6 4.1c.2.3 2.7 4.1 6.6 5.8.9.4 1.6.6 2.1.8.9.3 1.7.3 2.3.2.7-.1 2.3-1 2.7-1.9.3-.9.3-1.6.2-1.8-.1-.2-.4-.3-.8-.5z"/>
     </svg>
   </a>
 
   <script>
-    // Cambio dinámico de fondo en el hero
-    const titulos = document.querySelectorAll('.landing h1');
-    const landing = document.querySelector('.landing');
-    titulos.forEach(t => {
+    // Carrusel de fondos al pasar el mouse
+    const hero = document.querySelector('.landing');
+    const titles = document.querySelectorAll('.landing h1');
+    titles.forEach(t => {
       t.addEventListener('mouseenter', () => {
-        landing.style.backgroundImage = `url('${t.getAttribute('data-bg')}')`;
+        const bg = t.getAttribute('data-bg');
+        hero.style.backgroundImage = `url('${bg}')`;
       });
     });
   </script>
