@@ -3,21 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Panificadora Bustos | Pan fresco, artesanal y de calidad. Elaboramos hallullas, marraquetas, frica e integral con dedicación familiar en Calera de Tango." />
-  <meta name="keywords" content="panadería, pan fresco, marraquetas, hallulla, pan artesanal, Calera de Tango, Panificadora Bustos" />
-  <meta name="author" content="Panificadora Bustos" />
-  <title>Panificadora Bustos | Tradición y Sabor Familiar</title>
+  <title>Panificadora Bustos</title>
+  <meta name="description" content="Panificadora Bustos — Pan fresco y artesanal en Calera de Tango. Marraquetas, hallullas, colisas, pan de completo y más.">
+  <meta name="keywords" content="pan, panadería, marraqueta, hallulla, pan artesanal, Calera de Tango, Panificadora Bustos">
 
-  <!-- Fuente -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
-
-  <!-- Estilos -->
   <style>
     :root {
       --amber-800: #6b3d0c;
       --amber-600: #d7b46a;
       --gray-700: #4b5563;
-      --white: #ffffff;
     }
 
     * {
@@ -30,98 +24,99 @@
       font-family: 'Poppins', sans-serif;
       color: var(--gray-700);
       scroll-behavior: smooth;
-      background-color: #fffaf3;
+      background-color: #fffdf8;
     }
 
-    /* ====== HERO PRINCIPAL ====== */
+    /* ====== HERO ====== */
     .landing {
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      background: url('img/pedido.jpg') center/cover no-repeat;
+      background-image: url('img/pedido.jpg');
+      background-size: cover;
+      background-position: center;
       position: relative;
-      color: var(--white);
-      overflow: hidden;
+      color: #fff;
+      transition: background-image 0.8s ease-in-out;
     }
 
-    .landing::after {
-      content: "";
+    .overlay {
       position: absolute;
       inset: 0;
       background: rgba(0, 0, 0, 0.45);
-    }
-
-    .landing header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: var(--amber-600);
-      color: var(--amber-800);
-      text-align: center;
-      padding: 5px 0;
-      font-size: 13px;
-      letter-spacing: 0.4px;
-      z-index: 1000;
-      font-weight: 500;
+      z-index: 1;
     }
 
     .landing .contenedor {
       position: relative;
       z-index: 2;
+      margin-left: 5%;
       text-align: left;
-      margin-left: 10%;
     }
 
     .landing h1 {
-      font-size: 2.8rem;
+      font-size: 3rem;
       font-weight: 800;
-      margin: 0.6em 0;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+      margin: 0.4em 0;
       cursor: pointer;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
       transition: transform 0.3s, color 0.3s;
     }
 
     .landing h1:hover {
       transform: translateX(8px);
-      color: var(--amber-600);
+      color: #f5d48a;
     }
 
-    /* ====== DECORACIÓN INFERIOR ====== */
+    header.banner {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: var(--amber-600);
+      color: #4b2e0e;
+      text-align: center;
+      padding: 6px 0;
+      font-size: 13px;
+      z-index: 100;
+      letter-spacing: 0.5px;
+    }
+
     .decoracion {
       position: absolute;
       bottom: 0;
-      left: 0;
       width: 100%;
-      overflow: hidden;
       line-height: 0;
     }
 
     .decoracion svg {
-      width: 120%;
+      width: 100%;
       height: 100px;
       transform: rotate(180deg);
     }
 
     .decoracion path {
-      fill: var(--white);
+      fill: #ffffff;
     }
 
     /* ====== NAVBAR ====== */
     header.main {
-      background: var(--white);
+      background: #fff;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
       z-index: 50;
-      padding: 0.5rem 2rem;
+      padding: 0.8rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
     header.main h1 {
       color: var(--amber-800);
       font-size: 1.6rem;
-      font-weight: 800;
+      font-weight: bold;
     }
 
     nav a {
@@ -148,7 +143,6 @@
       margin-bottom: 1.5rem;
     }
 
-    /* ====== PRODUCTOS ====== */
     .productos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -158,7 +152,7 @@
     }
 
     .card {
-      background: var(--white);
+      background: #fff;
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 3px 8px rgba(0,0,0,0.1);
@@ -184,24 +178,9 @@
       margin-bottom: 0.5rem;
     }
 
-    /* ====== NOSOTROS ====== */
-    #nosotros p {
-      max-width: 700px;
-      margin: 0 auto;
-      font-size: 1.125rem;
-      line-height: 1.8;
-    }
-
-    /* ====== CONTACTO ====== */
-    #contacto p {
-      font-size: 1.05rem;
-      margin-bottom: 0.5rem;
-    }
-
-    /* ====== FOOTER ====== */
     footer {
       background-color: var(--amber-800);
-      color: var(--white);
+      color: #fff;
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
@@ -210,44 +189,52 @@
     /* ====== BOTÓN WHATSAPP ====== */
     .whatsapp-float {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-      transition: transform 0.3s ease;
-    }
-
-    .whatsapp-float img {
+      bottom: 25px;
+      right: 25px;
+      background-color: #25D366;
       border-radius: 50%;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      z-index: 200;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .whatsapp-float:hover {
       transform: scale(1.1);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    }
+
+    .whatsapp-float svg {
+      width: 35px;
+      height: 35px;
+      fill: white;
     }
 
     @media (max-width: 768px) {
       .landing h1 {
         font-size: 2rem;
       }
-      .landing .contenedor {
-        margin-left: 5%;
-      }
     }
   </style>
 </head>
 
 <body>
+  <!-- BANNER -->
+  <header class="banner">💛 Realiza tu pedido con anticipación — Entregas de 8 AM a 5 PM.</header>
+
   <!-- HERO -->
   <div class="landing" id="inicio">
-    <header>💛 Realiza tu pedido con anticipación — Entregas de 8 AM a 5 PM.</header>
-
+    <div class="overlay"></div>
     <div class="contenedor">
       <h1 data-bg="https://github.com/Arguz-hub/Panificadora/raw/main/Banner%20derecha.png">NOSOTROS</h1>
       <h1 data-bg="https://github.com/Arguz-hub/Panificadora/raw/main/Frica.jpg">NUESTROS PRODUCTOS</h1>
       <h1 data-bg="https://github.com/Arguz-hub/Panificadora/raw/main/Hallulla%20integral.jpg">CONÓCENOS</h1>
       <h1 data-bg="https://github.com/Arguz-hub/Panificadora/raw/main/Pan%20de%20completo.png">ESCRÍBENOS</h1>
     </div>
-
     <div class="decoracion">
       <svg viewBox="0 0 500 100" preserveAspectRatio="none">
         <path d="M0,64 C150,100 350,0 500,64 L500,0 L0,0 Z"></path>
@@ -257,14 +244,12 @@
 
   <!-- NAVBAR -->
   <header class="main">
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;">
-      <h1>🥖 Panificadora Bustos</h1>
-      <nav>
-        <a href="#productos">Productos</a>
-        <a href="#nosotros">Nosotros</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-    </div>
+    <h1>🥖 Panificadora Bustos</h1>
+    <nav>
+      <a href="#productos">Productos</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
   </header>
 
   <!-- PRODUCTOS -->
@@ -275,47 +260,42 @@
         <img src="https://github.com/Arguz-hub/Panificadora/raw/main/hallulla.jpg" alt="Hallulla">
         <div class="content">
           <h4>Hallulla</h4>
-          <p>Hallulla suave, dorada y perfecta para cualquier ocasión.</p>
+          <p>Hallulla corriente, suave y dorada.</p>
         </div>
       </div>
-
       <div class="card">
         <img src="https://github.com/Arguz-hub/Panificadora/raw/main/Marraqueta.jpeg" alt="Marraqueta">
         <div class="content">
           <h4>Marraqueta</h4>
-          <p>Crujiente por fuera, tierna por dentro — la clásica marraqueta chilena.</p>
+          <p>Marraqueta corriente, crujiente y tradicional.</p>
         </div>
       </div>
-
       <div class="card">
         <img src="https://github.com/Arguz-hub/Panificadora/raw/main/Hallulla%20integral.jpg" alt="Hallulla Integral">
         <div class="content">
           <h4>Hallulla Integral</h4>
-          <p>Elaborada con harina 100% integral, saludable y deliciosa.</p>
+          <p>Elaborada con harina 100% integral, nutritiva y deliciosa.</p>
         </div>
       </div>
-
       <div class="card">
         <img src="https://github.com/Arguz-hub/Panificadora/raw/main/Coliza.jpeg" alt="Colisa">
         <div class="content">
           <h4>Colisa</h4>
-          <p>Pan de miga suave, ideal para acompañar tus comidas.</p>
+          <p>Pan de miga suave, perfecto para acompañar tus comidas.</p>
         </div>
       </div>
-
       <div class="card">
         <img src="https://github.com/Arguz-hub/Panificadora/raw/main/Pan%20de%20completo.png" alt="Pan de Completo">
         <div class="content">
           <h4>Pan de Completo</h4>
-          <p>Suave y firme, el compañero perfecto para tu completo o hot dog.</p>
+          <p>Pan firme y suave, ideal para completos o hot dogs.</p>
         </div>
       </div>
-
       <div class="card">
-        <img src="https://github.com/Arguz-hub/Panificadora/raw/main/Frica.jpg" alt="Pan Frica">
+        <img src="https://github.com/Arguz-hub/Panificadora/raw/main/Frica.jpg" alt="Frica">
         <div class="content">
           <h4>Frica</h4>
-          <p>Pan artesanal, de corteza dorada y aroma inconfundible.</p>
+          <p>Pan artesanal, corteza dorada y miga aireada.</p>
         </div>
       </div>
     </div>
@@ -324,16 +304,16 @@
   <!-- NOSOTROS -->
   <section id="nosotros">
     <h3>Sobre Nosotros</h3>
-    <p>
+    <p style="max-width:700px;margin:0 auto;font-size:1.1rem;">
       Somos una panificadora familiar con más de 20 años de experiencia, dedicada a elaborar productos frescos y deliciosos con ingredientes de la mejor calidad.  
-      En *Panificadora Bustos*, horneamos cada pan con amor y tradición, ofreciendo sabor y calidez a cada hogar.
+      Nuestro compromiso es ofrecer sabor y calidez en cada pan que llega a tu mesa.
     </p>
   </section>
 
   <!-- CONTACTO -->
   <section id="contacto">
     <h3>Contáctanos</h3>
-    <div style="display:grid;gap:1.5rem;max-width:800px;margin:0 auto;">
+    <div style="max-width:800px;margin:0 auto;text-align:left;font-size:1rem;">
       <p><strong>📍 Dirección:</strong> Santa Inés, Sitio 47, Calera de Tango</p>
       <p><strong>📞 Teléfono:</strong> +56 9 3429 7927</p>
       <p><strong>📧 Correo:</strong> panificadorabustos@hotmail.es</p>
@@ -347,32 +327,24 @@
   </footer>
 
   <!-- BOTÓN WHATSAPP -->
-  <a href="https://wa.me/56934297927?text=Hola%20Panificadora%20Bustos,%20quiero%20hacer%20un%20pedido%20de%20pan."
-     class="whatsapp-float"
-     target="_blank"
-     title="Chatea con nosotros por WhatsApp">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
-         alt="WhatsApp"
-         width="60"
-         height="60">
+  <a href="https://wa.me/56934297927?text=Hola%2C%20quisiera%20hacer%20un%20pedido%20🍞" class="whatsapp-float" target="_blank" aria-label="Chatear por WhatsApp">
+    <svg viewBox="0 0 32 32">
+      <path d="M16 0C7.164 0 0 7.164 0 16c0 2.828.736 5.58 2.131 8.008L0 32l8.261-2.087A15.91 15.91 0 0 0 16 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.333c-2.46 0-4.878-.648-6.994-1.878l-.5-.295-4.9 1.238 1.302-4.768-.325-.52A13.27 13.27 0 0 1 2.667 16C2.667 8.64 8.64 2.667 16 2.667S29.333 8.64 29.333 16 23.36 29.333 16 29.333zm7.257-9.423c-.398-.199-2.35-1.158-2.714-1.29-.364-.133-.63-.199-.895.199-.265.398-1.026 1.29-1.26 1.555-.232.265-.465.299-.863.1-.398-.2-1.68-.619-3.2-1.975-1.183-1.056-1.98-2.358-2.213-2.756-.232-.398-.025-.613.174-.812.179-.178.398-.465.597-.697.199-.232.265-.398.398-.663.133-.266.066-.498-.033-.697-.1-.199-.894-2.158-1.226-2.958-.323-.777-.653-.674-.895-.674h-.764c-.266 0-.698.1-1.064.498-.366.398-1.398 1.365-1.398 3.326s1.433 3.861 1.631 4.125c.199.265 2.819 4.305 6.834 6.034 4.015 1.73 4.015 1.154 4.739 1.085.724-.066 2.35-.955 2.681-1.878.33-.922.33-1.714.232-1.878-.1-.165-.365-.265-.763-.464z"/>
+    </svg>
   </a>
 
-  <!-- SCRIPT -->
   <script>
-    // Cambia el fondo del landing al pasar el mouse sobre cada título
+    // Cambio dinámico de fondo en el hero
     const titulos = document.querySelectorAll('.landing h1');
     const landing = document.querySelector('.landing');
-    titulos.forEach(titulo => {
-      titulo.addEventListener('mouseenter', () => {
-        const nuevaImagen = titulo.getAttribute('data-bg');
-        landing.style.backgroundImage = `url('${nuevaImagen}')`;
+    titulos.forEach(t => {
+      t.addEventListener('mouseenter', () => {
+        landing.style.backgroundImage = `url('${t.getAttribute('data-bg')}')`;
       });
     });
   </script>
 </body>
 </html>
-
-
 
 
 
