@@ -25,7 +25,7 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      color: var(--gray-700);
+      color: var(--accent);
       background-color: #fffdf8;
       scroll-behavior: smooth;
       animation: fadeInBody 1s ease-in;
@@ -34,7 +34,7 @@
 
     /* ====== BARRA DE AVISO ====== */
     .barra-aviso {
-      background-color: var(--orange-bar);
+      background-color: var(--blue-light);
       color: #fff;
       text-align: center;
       padding: 0.5rem;
@@ -63,7 +63,7 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       z-index: 200;
       transition: all 0.3s ease;
-      border-bottom: 3px solid var(--amber-600);
+      border-bottom: 3px solid var(--blue-dark);
     }
 
     header.top img {
@@ -73,14 +73,14 @@
 
     header.top h1 {
       font-family: 'Dancing Script', cursive;
-      color: var(--amber-800);
+      color: var(--blue-dark);
       font-size: 1.8rem;
       margin-left: 10px;
     }
 
     header.top nav a {
       text-decoration: none;
-      color: var(--amber-800);
+      color: var(--blue-dark);
       font-weight: 600;
       margin: 0 1rem;
       transition: all 0.3s;
@@ -97,7 +97,7 @@
       transition: width 0.3s;
     }
     header.top nav a:hover::after { width: 100%; }
-    header.top nav a:hover { color: var(--amber-600); transform: translateY(-2px); }
+    header.top nav a:hover { color: var(--blue-main); transform: translateY(-2px); }
 
     /* ====== HERO ====== */
     .landing {
@@ -147,7 +147,7 @@
 
     .landing h1:hover {
       transform: translateX(12px) scale(1.05);
-      color: var(--gold);
+      color: var(--blue-main);
       text-shadow: 3px 3px 8px rgba(255, 215, 0, 0.6);
     }
 
@@ -186,7 +186,7 @@
 
     section h3 {
       font-size: 2rem;
-      color: var(--amber-800);
+      color: var(--blue-main);
       margin-bottom: 1.5rem;
       font-family: 'Dancing Script', cursive;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
@@ -214,14 +214,14 @@
     .card:hover img { transform: scale(1.05); }
 
     .card .content { padding: 1rem; }
-    .card h4 { color: var(--amber-800); margin-bottom: 0.5rem; }
+    .card h4 { color: var(--blue-main); margin-bottom: 0.5rem; }
 
     /* ====== CONTACTO ====== */
     #contacto a {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      color: var(--amber-800);
+      color: var(--blue-main);
       text-decoration: none;
       font-weight: 600;
       margin-top: 1rem;
@@ -233,7 +233,7 @@
     #contacto svg {
       width: 24px;
       height: 24px;
-      fill: var(--amber-800);
+      fill: var(--blue-main);
       transition: fill 0.3s;
     }
     #contacto a:hover svg {
@@ -241,7 +241,7 @@
     }
 
     footer {
-      background: linear-gradient(135deg, var(--amber-800), #4b2e0e);
+      background: linear-gradient(135deg, var(--blue-main), #4b2e0e);
       color: #fff;
       text-align: center;
       padding: 1rem;
@@ -425,6 +425,7 @@
   </script>
 </body>
 </html>
+
 
 
 
