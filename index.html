@@ -51,7 +51,7 @@
     /* ====== ENCABEZADO FIJO ====== */
     header.top {
       position: fixed;
-      top: 40px; /* debajo de la barra naranja */
+      top: 40px; /* debajo de la barra celeste */
       left: 0;
       width: 100%;
       display: flex;
@@ -98,6 +98,27 @@
     }
     header.top nav a:hover::after { width: 100%; }
     header.top nav a:hover { color: var(--blue-main); transform: translateY(-2px); }
+
+    .logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;   /* ← este es el espacio real */
+}
+
+.logo-container img {
+  height: 42px;
+}
+
+.logo-text {
+  font-family: 'Montserrat', sans-serif; /* tipografía del logo */
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: 1px;
+  margin: 0;          /* MUY importante */
+  color: var(--blue-dark);
+  line-height: 1;
+}
+
 
     /* ====== HERO ====== */
     .landing {
@@ -280,15 +301,17 @@
 <body>
   <!-- BARRA DE AVISO -->
   <div class="barra-aviso">
-    🕒 Realiza tu pedido con anticipación — Entregas de 8 AM a 5 PM.
+    🕒 Realiza tu pedido con anticipación — Entregas de 8 AM a 4 PM.
   </div>
 
   <!-- ENCABEZADO FIJO -->
   <header class="top">
-    <div style="display:flex;align-items:center;">
-      <img src="https://github.com/Arguz-hub/Migvclean/raw/main/LOGO%20MIGV.png" alt="Logo MIVG">
-      <h1>MIVGclean</h1>
-    </div>
+    <div class="logo-container">
+  <img src="https://github.com/Arguz-hub/Migvclean/raw/main/LOGO%20MIGV.png" alt="Logo MIVG">
+  <h1 class="logo-text">MIVGclean</h1>
+</div>
+
+
     <nav>
       <a href="#productos">Productos</a>
       <a href="#nosotros">Nosotros</a>
@@ -424,6 +447,7 @@
   </script>
 </body>
 </html>
+
 
 
 
