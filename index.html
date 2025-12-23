@@ -6,7 +6,7 @@
   <title>MIGVclean</title>
   <meta name="description" content="MIGVclean - articulos de aseo para tu hogar al mejor precio.">
   <meta name="keywords" content="MIGVclean - articulos de aseo para tu hogar al mejor precio.">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Monserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -51,31 +51,39 @@
     /* ====== ENCABEZADO FIJO ====== */
     header.top {
       position: fixed;
-      top: 40px; /* debajo de la barra celeste */
-      left: 0;
+      top: 40px;
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0.5rem 2rem;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255,255,255,0.95);
       backdrop-filter: blur(6px);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      z-index: 200;
-      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       border-bottom: 3px solid var(--blue-dark);
+      z-index: 200;
     }
 
-    header.top img {
-      height: 45px;
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-container img {
+      height: 42px;
       width: auto;
     }
 
-    header.top h1 {
-      font-family: 'Dancing Script', cursive;
+    /* 👉 TEXTO DEL LOGO (FUENTE CAMBIADA AQUÍ) */
+    .logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: 1px;
+      margin: 0;
       color: var(--blue-dark);
-      font-size: 1.8rem;
-      margin-left: 10px;
+      line-height: 1;
     }
 
     header.top nav a {
@@ -83,42 +91,12 @@
       color: var(--blue-dark);
       font-weight: 600;
       margin: 0 1rem;
-      transition: all 0.3s;
-      position: relative;
+      transition: 0.3s;
     }
-    header.top nav a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--gold);
-      transition: width 0.3s;
+
+    header.top nav a:hover {
+      color: var(--blue-main);
     }
-    header.top nav a:hover::after { width: 100%; }
-    header.top nav a:hover { color: var(--blue-main); transform: translateY(-2px); }
-
-    .logo-container {
-  display: flex;
-  align-items: center;
-  gap: 12px;   /* ← este es el espacio real */
-}
-
-.logo-container img {
-  height: 42px;
-}
-
-.logo-text {
-  font-family: 'Montserrat', sans-serif; /* tipografía del logo */
-  font-weight: 700;
-  font-size: 1.35rem;
-  letter-spacing: 1px;
-  margin: 0;          /* MUY importante */
-  color: var(--blue-dark);
-  line-height: 1;
-}
-
 
     /* ====== HERO ====== */
     .landing {
@@ -447,6 +425,7 @@
   </script>
 </body>
 </html>
+
 
 
 
