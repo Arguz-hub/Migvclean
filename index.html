@@ -874,15 +874,15 @@
         return `• ${name} x ${item.quantity} — precio por confirmar`;
       });
       const message = [
-        '¡Hola, equipo de MIGVclean! 😊 Quisiera hacer este pedido:',
+        '¡Hola, equipo de MIGVclean! Quisiera hacer este pedido:',
         '',
         ...lines,
         '',
-        `🧾 Total de los productos con precio publicado: ${formatCLP(knownTotal)}`,
+        ` Total de los productos con precio publicado: ${formatCLP(knownTotal)}`,
         ...(pendingCount > 0 ? [`Hay ${pendingCount} producto(s) cuyo precio quisiera consultar.`] : []),
         '',
         '¿Me podrían confirmar la disponibilidad y el valor del despacho, por favor?',
-        '¡Muchas gracias! 😊'
+        '¡Muchas gracias!'
       ].join('\n');
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank', 'noopener,noreferrer');
