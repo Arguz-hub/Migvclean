@@ -278,6 +278,32 @@
       font-size: 0.9rem;
     }
 
+
+    /* BOTÓN DE INSTAGRAM EN CONTACTO */
+    .instagram-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      margin-top: 0.5rem;
+      border-radius: 12px;
+      color: #fff;
+      background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .instagram-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(11, 60, 93, 0.22);
+    }
+
+    .instagram-link svg {
+      width: 26px;
+      height: 26px;
+      fill: currentColor;
+    }
+
     /* BOTÓN FLOTANTE WHATSAPP */
     .whatsapp-float {
       position: fixed;
@@ -610,6 +636,13 @@
     <p><strong>📧 Correo:</strong> migvclean@gmail.com</p>
     <p><strong>🕒 Horario de atención:</strong> De 8:00 a 16:00 hrs.</p>
 
+    <!-- BOTÓN INSTAGRAM: cambia solo INSTAGRAM_PROFILE_URL en el script -->
+    <a id="instagram-link" class="instagram-link" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Visitar nuestro perfil de Instagram" title="Síguenos en Instagram">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M7.5 2C4.46 2 2 4.46 2 7.5v9C2 19.54 4.46 22 7.5 22h9c3.04 0 5.5-2.46 5.5-5.5v-9C22 4.46 19.54 2 16.5 2h-9zm0 2h9C18.43 4 20 5.57 20 7.5v9c0 1.93-1.57 3.5-3.5 3.5h-9C5.57 20 4 18.43 4 16.5v-9C4 5.57 5.57 4 7.5 4zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm5.75-.75a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5z"/>
+      </svg>
+    </a>
+
   </section>
 
   <!-- PANEL DEL CARRITO DE COMPRAS -->
@@ -665,6 +698,10 @@
         }
       });
     });
+
+    // INSTAGRAM: cambia SOLO esta URL para dirigir el botón al perfil que quieras.
+    const INSTAGRAM_PROFILE_URL = 'https://www.instagram.com/TU_USUARIO/';
+    document.getElementById('instagram-link').href = INSTAGRAM_PROFILE_URL;
 
     // CARRITO: conserva los productos en este navegador y permite enviar el pedido por WhatsApp.
     const WHATSAPP_NUMBER = '56923770059';
