@@ -235,6 +235,14 @@
       margin-bottom: 0.5rem;
     }
 
+    .product-price { display: inline-block; margin-top: 0.45rem; color: var(--blue-dark); font-size: 1.05rem; }
+    .cart-price-line { color: var(--gray-700); font-size: 0.9rem; margin-top: 0.25rem; }
+    .cart-item-subtotal { margin-top: 0.3rem; font-weight: 700; color: var(--blue-dark); }
+    .cart-total-box { margin-top: 1rem; padding: 1rem; background: #e3f2fd; border-radius: 8px; }
+    .cart-total-row { display: flex; justify-content: space-between; gap: 1rem; margin: 0.25rem 0; }
+    .cart-total-main { font-size: 1.15rem; font-weight: 700; }
+    .cart-total-note { margin-top: 0.5rem; color: var(--gray-700); font-size: 0.82rem; }
+
     /* CONTACTO */
     #contacto a {
       display: inline-flex;
@@ -508,8 +516,8 @@
         <img src="https://github.com/Arguz-hub/Migvclean/raw/main/Elite%20x4.jpeg" alt="Confort Elite x4 - 50mts.">
         <div class="content">
           <h4>Confort</h4>
-          <p>Confort Elite 50 metros x 4.</p>
-          <button type="button" class="add-to-cart" data-name="Confort">Añadir al carrito</button>
+          <p>Confort Elite 50 metros x 4.<br><strong class="product-price">Valor: $2.600</strong></p>
+          <button type="button" class="add-to-cart" data-name="Confort" data-price="2600">Añadir al carrito</button>
         </div>
       </div>
 
@@ -517,8 +525,8 @@
         <img src="ruta foto producto" alt="Paños amarillos">
         <div class="content">
           <h4>Paños amarillos</h4>
-          <p>Paños amarillos 30x30 / 3 unidades.</p>
-          <button type="button" class="add-to-cart" data-name="Paños amarillos">Añadir al carrito</button>
+          <p>Paños amarillos 30x30 / 3 unidades.<br><strong class="product-price">Precio por confirmar</strong></p>
+          <button type="button" class="add-to-cart" data-name="Paños amarillos" data-price="">Añadir al carrito</button>
         </div>
       </div>
 
@@ -526,8 +534,8 @@
         <img src="ruta foto producto" alt="Lavalozas">
         <div class="content">
           <h4>Lavalozas</h4>
-          <p>Lavalozas Quix concentrado 400 ml.</p>
-          <button type="button" class="add-to-cart" data-name="Lavalozas">Añadir al carrito</button>
+          <p>Lavalozas Quix concentrado 400 ml.<br><strong class="product-price">Precio por confirmar</strong></p>
+          <button type="button" class="add-to-cart" data-name="Lavalozas" data-price="">Añadir al carrito</button>
         </div>
       </div>
 
@@ -535,8 +543,8 @@
         <img src="ruta foto producto" alt="Cloro">
         <div class="content">
           <h4>Cloro</h4>
-          <p>Clorox 750 ml.</p>
-          <button type="button" class="add-to-cart" data-name="Cloro">Añadir al carrito</button>
+          <p>Clorox 750 ml.<br><strong class="product-price">Precio por confirmar</strong></p>
+          <button type="button" class="add-to-cart" data-name="Cloro" data-price="">Añadir al carrito</button>
         </div>
       </div>
 
@@ -544,8 +552,8 @@
         <img src="ruta foto producto" alt="Esponjas">
         <div class="content">
           <h4>Esponjas</h4>
-          <p>Esponjas 4 unidades.</p>
-          <button type="button" class="add-to-cart" data-name="Esponjas">Añadir al carrito</button>
+          <p>Esponjas 4 unidades.<br><strong class="product-price">Precio por confirmar</strong></p>
+          <button type="button" class="add-to-cart" data-name="Esponjas" data-price="">Añadir al carrito</button>
         </div>
       </div>
 
@@ -553,8 +561,8 @@
         <img src="ruta foto producto" alt="Cif">
         <div class="content">
           <h4>Cif</h4>
-          <p>Cif 750 ml.</p>
-          <button type="button" class="add-to-cart" data-name="Cif">Añadir al carrito</button>
+          <p>Cif 750 ml.<br><strong class="product-price">Precio por confirmar</strong></p>
+          <button type="button" class="add-to-cart" data-name="Cif" data-price="">Añadir al carrito</button>
         </div>
       </div>
 
@@ -562,8 +570,8 @@
         <img src="ruta foto producto" alt="Guantes amarillos">
         <div class="content">
           <h4>Guantes amarillos</h4>
-          <p>Guantes amarillos para proteger tus manos.</p>
-          <button type="button" class="add-to-cart" data-name="Guantes amarillos">Añadir al carrito</button>
+          <p>Guantes amarillos para proteger tus manos.<br><strong class="product-price">Precio por confirmar</strong></p>
+          <button type="button" class="add-to-cart" data-name="Guantes amarillos" data-price="">Añadir al carrito</button>
         </div>
       </div>
 
@@ -571,8 +579,8 @@
         <img src="ruta foto producto" alt="Escoba">
         <div class="content">
           <h4>Escoba</h4>
-          <p>Escoba de cerdas plásticas con palo.</p>
-          <button type="button" class="add-to-cart" data-name="Escoba">Añadir al carrito</button>
+          <p>Escoba de cerdas plásticas con palo.<br><strong class="product-price">Precio por confirmar</strong></p>
+          <button type="button" class="add-to-cart" data-name="Escoba" data-price="">Añadir al carrito</button>
         </div>
       </div>
     </div>
@@ -616,8 +624,12 @@
         <h2 id="cart-title">Tu carrito</h2>
         <button type="button" class="cart-close" id="close-cart" aria-label="Cerrar carrito">&times;</button>
       </div>
-      <p class="cart-note">Revisa tus productos y cantidades. Al confirmar, enviaremos tu pedido por WhatsApp para consultar precios y disponibilidad.</p>
+      <p class="cart-note">Revisa tus productos y cantidades. Los productos sin precio definido aparecerán como “Precio por confirmar” y no se incluirán en el total hasta que agregues su precio al código.</p>
       <div class="cart-items" id="cart-items"></div>
+      <div class="cart-total-box">
+        <div class="cart-total-row cart-total-main"><span>Total calculado</span><span id="cart-total">$0</span></div>
+        <div class="cart-total-note" id="cart-total-note"></div>
+      </div>
       <div class="cart-actions">
         <button type="button" class="checkout-button" id="checkout-cart">Enviar pedido por WhatsApp</button>
         <button type="button" class="clear-cart-button" id="clear-cart">Vaciar carrito</button>
@@ -684,10 +696,16 @@
       return Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
     }
 
+    function formatCLP(value) {
+      return '$' + Number(value || 0).toLocaleString('es-CL');
+    }
+
     function renderCart() {
       cartCount.textContent = totalUnits();
       cartItemsContainer.innerHTML = '';
       const entries = Object.entries(cart);
+      let calculatedTotal = 0;
+      let unitsWithoutPrice = 0;
 
       if (entries.length === 0) {
         cartItemsContainer.innerHTML = '<p class="cart-empty">Tu carrito está vacío. Agrega productos para comenzar.</p>';
@@ -695,34 +713,45 @@
         entries.forEach(([name, item]) => {
           const row = document.createElement('div');
           row.className = 'cart-item';
-
           const details = document.createElement('div');
           const productName = document.createElement('div');
           productName.className = 'cart-item-name';
           productName.textContent = name;
+          const priceLine = document.createElement('div');
+          priceLine.className = 'cart-price-line';
+
+          if (Number.isFinite(item.price) && item.price >= 0) {
+            priceLine.textContent = 'Precio unitario: ' + formatCLP(item.price);
+            const subtotalLine = document.createElement('div');
+            subtotalLine.className = 'cart-item-subtotal';
+            subtotalLine.textContent = 'Subtotal: ' + formatCLP(item.price * item.quantity);
+            calculatedTotal += item.price * item.quantity;
+            details.append(productName, priceLine, subtotalLine);
+          } else {
+            priceLine.textContent = 'Precio por confirmar';
+            unitsWithoutPrice += item.quantity;
+            details.append(productName, priceLine);
+          }
+
           const controls = document.createElement('div');
           controls.className = 'cart-item-controls';
-
           const minus = document.createElement('button');
           minus.type = 'button';
           minus.className = 'quantity-button';
           minus.textContent = '−';
           minus.setAttribute('aria-label', 'Restar una unidad de ' + name);
           minus.addEventListener('click', () => changeQuantity(name, -1));
-
           const quantity = document.createElement('span');
           quantity.textContent = item.quantity;
           quantity.setAttribute('aria-label', 'Cantidad');
-
           const plus = document.createElement('button');
           plus.type = 'button';
           plus.className = 'quantity-button';
           plus.textContent = '+';
           plus.setAttribute('aria-label', 'Agregar una unidad de ' + name);
           plus.addEventListener('click', () => changeQuantity(name, 1));
-
           controls.append(minus, quantity, plus);
-          details.append(productName, controls);
+          details.append(controls);
 
           const remove = document.createElement('button');
           remove.type = 'button';
@@ -733,12 +762,15 @@
             saveCart();
             renderCart();
           });
-
           row.append(details, remove);
           cartItemsContainer.appendChild(row);
         });
       }
 
+      document.getElementById('cart-total').textContent = formatCLP(calculatedTotal);
+      document.getElementById('cart-total-note').textContent = unitsWithoutPrice > 0
+        ? 'Hay ' + unitsWithoutPrice + ' unidad(es) sin precio definido. El total es parcial y no incluye esos productos ni el despacho.'
+        : 'Total de productos con precio definido. No incluye despacho.';
       checkoutButton.disabled = entries.length === 0;
       clearCartButton.disabled = entries.length === 0;
     }
@@ -768,7 +800,10 @@
     document.querySelectorAll('.add-to-cart').forEach((button) => {
       button.addEventListener('click', () => {
         const name = button.dataset.name;
-        if (!cart[name]) cart[name] = { quantity: 0 };
+        const rawPrice = button.dataset.price;
+        const price = rawPrice !== '' && rawPrice !== undefined ? Number(rawPrice) : null;
+        if (!cart[name]) cart[name] = { quantity: 0, price: Number.isFinite(price) ? price : null };
+        if (Number.isFinite(price)) cart[name].price = price;
         cart[name].quantity += 1;
         saveCart();
         renderCart();
@@ -795,14 +830,26 @@
     checkoutButton.addEventListener('click', () => {
       const entries = Object.entries(cart);
       if (entries.length === 0) return;
-      const lines = entries.map(([name, item]) => `• ${name} x ${item.quantity}`);
+      let knownTotal = 0;
+      let pendingCount = 0;
+      const lines = entries.map(([name, item]) => {
+        if (Number.isFinite(item.price) && item.price >= 0) {
+          const subtotal = item.price * item.quantity;
+          knownTotal += subtotal;
+          return `• ${name} x ${item.quantity} — ${formatCLP(item.price)} c/u — Subtotal ${formatCLP(subtotal)}`;
+        }
+        pendingCount += item.quantity;
+        return `• ${name} x ${item.quantity} — precio por confirmar`;
+      });
       const message = [
         'Hola MIGVclean, quiero realizar el siguiente pedido:',
         '',
         ...lines,
         '',
-        '¿Me pueden confirmar los precios, disponibilidad y costo de despacho?'
-      ].join('\n');
+        `Total calculado (solo productos con precio definido): ${formatCLP(knownTotal)}`,
+        ...(pendingCount > 0 ? [`Hay ${pendingCount} unidad(es) con precio por confirmar.`] : []),
+        'Por favor confirmar disponibilidad y costo de despacho.'
+      ].join('\\n');
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank', 'noopener,noreferrer');
     });
