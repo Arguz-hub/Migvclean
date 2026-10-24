@@ -476,7 +476,7 @@
 
   <!-- BARRA DE AVISO -->
   <div class="barra-aviso">
-    🕒 Realiza tu pedido con anticipación — Entregas de 8 AM a 4 PM.
+    🕒 Atención y entregas: de 8:00 a 16:00 hrs.
   </div>
 
   <!-- ENCABEZADO -->
@@ -608,7 +608,7 @@
     <h3>Contáctanos</h3>
     <p><strong>📞 Teléfono:</strong> +56 9 2377 0059</p>
     <p><strong>📧 Correo:</strong> migvclean@gmail.com</p>
-    <p><strong>🕒 Horario:</strong> Lunes a viernes de 6:00 a 19:00 hrs. - Domingo y festivos de 6:00 a 18:00 hrs.</p>
+    <p><strong>🕒 Horario de atención:</strong> De 8:00 a 16:00 hrs.</p>
 
     <a href="https://www.instagram.com/panificadorabustos/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -624,7 +624,7 @@
         <h2 id="cart-title">Tu carrito</h2>
         <button type="button" class="cart-close" id="close-cart" aria-label="Cerrar carrito">&times;</button>
       </div>
-      <p class="cart-note">Revisa tus productos y cantidades. Los productos sin precio definido aparecerán como “Precio por confirmar” y no se incluirán en el total hasta que agregues su precio al código.</p>
+      <p class="cart-note">¡Ya casi está! Revisa los productos y las cantidades. Si alguno no tiene precio publicado, te lo confirmaremos por WhatsApp.</p>
       <div class="cart-items" id="cart-items"></div>
       <div class="cart-total-box">
         <div class="cart-total-row cart-total-main"><span>Total calculado</span><span id="cart-total">$0</span></div>
@@ -842,14 +842,16 @@
         return `• ${name} x ${item.quantity} — precio por confirmar`;
       });
       const message = [
-        'Hola MIGVclean, quiero realizar el siguiente pedido:',
+        '¡Hola, equipo de MIGVclean! 😊 Quisiera hacer este pedido:',
         '',
         ...lines,
         '',
-        `Total calculado (solo productos con precio definido): ${formatCLP(knownTotal)}`,
-        ...(pendingCount > 0 ? [`Hay ${pendingCount} unidad(es) con precio por confirmar.`] : []),
-        'Por favor confirmar disponibilidad y costo de despacho.'
-      ].join('\\n');
+        `🧾 Total de los productos con precio publicado: ${formatCLP(knownTotal)}`,
+        ...(pendingCount > 0 ? [`Hay ${pendingCount} producto(s) cuyo precio quisiera consultar.`] : []),
+        '',
+        '¿Me podrían confirmar la disponibilidad y el valor del despacho, por favor?',
+        '¡Muchas gracias! 😊'
+      ].join('\n');
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank', 'noopener,noreferrer');
     });
