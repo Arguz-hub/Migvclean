@@ -1,21 +1,24 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MIGVclean</title>
-  <meta name="description" content="MIGVclean - articulos de aseo para tu hogar al mejor precio.">
-  <meta name="keywords" content="MIGVclean - articulos de aseo para tu hogar al mejor precio.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIGVclean | Artículos de aseo</title>
+  <meta name="description" content="MIGVclean: artículos de aseo para tu hogar al mejor precio.">
+  <meta name="keywords" content="MIGVclean, artículos de aseo, limpieza, hogar">
+
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-  --blue-dark: #0b3c5d;      /* Azul profundo (encabezados, textos fuertes) */
-  --blue-main: #1e88e5;      /* Azul principal */
-  --blue-light: #4fc3f7;     /* Celeste */
-  --gray-700: #4b5563;
-  --accent: #e3f2fd;         /* Celeste muy suave */
-}
+      --blue-dark: #0b3c5d;
+      --blue-main: #1e88e5;
+      --blue-light: #4fc3f7;
+      --gray-700: #4b5563;
+      --accent: #e3f2fd;
+      --gold: #d4a017;
+    }
 
     * {
       margin: 0;
@@ -23,43 +26,52 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 110px;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
-      color: var(--blue-light);
+      color: var(--gray-700);
       background-color: #fffdf8;
-      scroll-behavior: smooth;
       animation: fadeInBody 1s ease-in;
     }
-    @keyframes fadeInBody { from { opacity: 0; } to { opacity: 1; } }
 
-    /* ====== BARRA DE AVISO ====== */
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* BARRA DE AVISO */
     .barra-aviso {
-      background-color: var(--blue-light);
+      background-color: var(--blue-dark);
       color: #fff;
       text-align: center;
-      padding: 0.5rem;
+      padding: 0.55rem;
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 300;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
-    /* ====== ENCABEZADO FIJO ====== */
+    /* ENCABEZADO */
     header.top {
       position: fixed;
-      top: 40px;
+      top: 39px;
+      left: 0;
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.5rem 2rem;
-      background: rgba(255,255,255,0.95);
+      gap: 1rem;
+      padding: 0.65rem 2rem;
+      background: rgba(255, 255, 255, 0.97);
       backdrop-filter: blur(6px);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       border-bottom: 3px solid var(--blue-dark);
       z-index: 200;
     }
@@ -68,6 +80,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      min-width: 0;
     }
 
     .logo-container img {
@@ -75,101 +88,106 @@
       width: auto;
     }
 
-    /* 👉 TEXTO DEL LOGO (FUENTE CAMBIADA AQUÍ) */
     .logo-text {
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
       font-size: 1.35rem;
       letter-spacing: 1px;
-      margin: 0;
       color: var(--blue-dark);
-      line-height: 1;
+      line-height: 1.2;
+    }
+
+    header.top nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     header.top nav a {
       text-decoration: none;
       color: var(--blue-dark);
       font-weight: 600;
-      margin: 0 1rem;
-      transition: 0.3s;
+      margin: 0 0.7rem;
+      transition: color 0.3s;
     }
 
     header.top nav a:hover {
       color: var(--blue-main);
     }
 
-    /* ====== HERO ====== */
+    /* BANNER PRINCIPAL */
     .landing {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      background-image: url('ruta fondo');
+      background-image: url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1800&q=85');
       background-size: cover;
       background-position: center;
       position: relative;
       color: #fff;
-      transition: background-image 0.8s ease-in-out;
       overflow: hidden;
+      transition: background-image 0.5s ease-in-out;
     }
 
     .overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.45), rgba(107, 61, 12, 0.3));
+      background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.65),
+        rgba(11, 60, 93, 0.45)
+      );
       z-index: 1;
     }
 
     .landing .contenedor {
       position: relative;
       z-index: 2;
-      margin-left: 5%;
+      margin: 110px 5% 40px;
       text-align: left;
     }
 
     .landing h1 {
-      font-size: 3rem;
+      font-size: clamp(2rem, 5vw, 3.5rem);
       font-weight: 600;
       margin: 0.4em 0;
       cursor: pointer;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
-      transition: all 0.4s ease;
-      position: relative;
-      animation: slideInLeft 1s ease-out forwards;
-      opacity: 0;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      transition: color 0.3s, transform 0.3s;
+      animation: slideInLeft 1s ease-out both;
     }
+
     .landing h1:nth-child(1) { animation-delay: 0.2s; }
     .landing h1:nth-child(2) { animation-delay: 0.4s; }
     .landing h1:nth-child(3) { animation-delay: 0.6s; }
     .landing h1:nth-child(4) { animation-delay: 0.8s; }
-    @keyframes slideInLeft { from { transform: translateX(-50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+    @keyframes slideInLeft {
+      from {
+        transform: translateX(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
 
     .landing h1:hover {
-      transform: translateX(12px) scale(1.05);
-      color: var(--blue-main);
-      text-shadow: 3px 3px 8px rgba(255, 215, 0, 0.6);
+      transform: translateX(10px);
+      color: var(--blue-light);
     }
 
-    .landing h1::before {
-      position: absolute;
-      left: -40px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 1.5rem;
-      opacity: 0;
-      transition: opacity 0.3s, transform 0.3s;
-    }
-    .landing h1:hover::before {
-      opacity: 1;
-      transform: translateY(-50%) rotate(10deg);
-    }
-
-    /* ====== SECCIONES ====== */
+    /* SECCIONES */
     section {
-      padding: 4rem 1.5rem;
+      padding: 5rem 1.5rem;
       text-align: center;
       position: relative;
+      scroll-margin-top: 110px;
     }
+
     section::before {
       content: '';
       position: absolute;
@@ -187,12 +205,12 @@
       color: var(--blue-main);
       margin-bottom: 1.5rem;
       font-family: 'Dancing Script', cursive;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
 
+    /* PRODUCTOS */
     .productos {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 1.5rem;
       max-width: 1200px;
       margin: 0 auto;
@@ -202,22 +220,55 @@
       background: #fff;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-      transition: all 0.4s ease;
-      position: relative;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .card:hover { transform: translateY(-8px) rotate(1deg); box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
 
-    .card img { width: 100%; height: 220px; object-fit: cover; transition: transform 0.3s; }
-    .card:hover img { transform: scale(1.05); }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16);
+    }
 
-    .card .content { padding: 1rem; }
-    .card h4 { color: var(--blue-main); margin-bottom: 0.5rem; }
+    .card img {
+      display: block;
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background: var(--accent);
+    }
 
-    /* ====== CONTACTO ====== */
+    .card .content {
+      padding: 1rem;
+    }
+
+    .card h4 {
+      color: var(--blue-main);
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: var(--gray-700);
+    }
+
+    /* NOSOTROS */
+    .texto-nosotros {
+      max-width: 800px;
+      margin: 0 auto 1.2rem;
+      font-size: 1rem;
+      line-height: 1.9;
+      text-align: justify;
+    }
+
+    /* CONTACTO */
+    #contacto p {
+      margin: 0.7rem auto;
+      overflow-wrap: anywhere;
+    }
+
     #contacto a {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.5rem;
       color: var(--blue-main);
       text-decoration: none;
@@ -225,235 +276,330 @@
       margin-top: 1rem;
       transition: color 0.3s;
     }
+
     #contacto a:hover {
       color: var(--gold);
     }
+
     #contacto svg {
-      width: 24px;
-      height: 24px;
-      fill: var(--blue-main);
-      transition: fill 0.3s;
-    }
-    #contacto a:hover svg {
-      fill: var(--gold);
+      width: 26px;
+      height: 26px;
+      fill: currentColor;
     }
 
+    /* PIE DE PÁGINA */
     footer {
-      background: linear-gradient(135deg, var(--blue-main), #4b2e0e);
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue-main));
       color: #fff;
       text-align: center;
-      padding: 1rem;
+      padding: 1.2rem;
       font-size: 0.9rem;
-      position: relative;
     }
 
-    /* ====== BOTÓN WHATSAPP ====== */
+    /* BOTÓN FLOTANTE WHATSAPP */
     .whatsapp-float {
       position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background: linear-gradient(135deg, #25D366, #128C7E);
+      bottom: 24px;
+      right: 24px;
+      background: #25D366;
       border-radius: 50%;
-      width: 60px;
-      height: 60px;
+      width: 62px;
+      height: 62px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-      z-index: 300;
-      transition: all 0.3s ease;
-      animation: pulse 2s infinite;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      z-index: 9999;
+      transition: transform 0.25s, box-shadow 0.25s;
+      text-decoration: none;
     }
-    @keyframes pulse { 0%, 100% { box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2); } 50% { box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); } }
-    .whatsapp-float:hover { transform: scale(1.1); }
-    .whatsapp-float svg { width: 35px; height: 35px; fill: white; }
 
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    .whatsapp-float svg {
+      width: 36px;
+      height: 36px;
+      fill: #fff;
+    }
+
+    .whatsapp-float:focus-visible {
+      outline: 3px solid var(--blue-dark);
+      outline-offset: 4px;
+    }
+
+    /* ADAPTACIÓN A CELULARES */
     @media (max-width: 768px) {
-      .landing h1 { font-size: 2rem; }
-      header.top nav a { margin: 0 0.5rem; }
-      header.top { top: 60px; }
+      .barra-aviso {
+        font-size: 0.75rem;
+        padding: 0.6rem 0.3rem;
+      }
+
+      header.top {
+        top: 36px;
+        padding: 0.6rem 0.8rem;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .logo-container img {
+        height: 34px;
+      }
+
+      .logo-text {
+        font-size: 1.15rem;
+      }
+
+      header.top nav a {
+        font-size: 0.85rem;
+        margin: 0 0.45rem;
+      }
+
+      .landing .contenedor {
+        margin-top: 145px;
+      }
+
+      .landing h1 {
+        font-size: clamp(1.7rem, 7vw, 2.5rem);
+      }
+
+      .productos {
+        grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+        gap: 1rem;
+      }
+
+      .card img {
+        height: 165px;
+      }
+
+      section {
+        padding: 4rem 1rem;
+      }
+
+      .whatsapp-float {
+        width: 56px;
+        height: 56px;
+        bottom: 18px;
+        right: 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
 
 <body>
+
   <!-- BARRA DE AVISO -->
   <div class="barra-aviso">
     🕒 Realiza tu pedido con anticipación — Entregas de 8 AM a 4 PM.
   </div>
 
-  <!-- ENCABEZADO FIJO -->
+  <!-- ENCABEZADO -->
   <header class="top">
     <div class="logo-container">
-  <img src="https://github.com/Arguz-hub/Migvclean/raw/main/LOGO%20MIGV.png" alt="Logo MIGV">
-  <h1 class="logo-text">MIGVclean</h1>
-</div>
+      <img
+        src="https://github.com/Arguz-hub/Migvclean/raw/main/LOGO%20MIGV.png"
+        alt="Logo MIGVclean"
+      >
+      <h1 class="logo-text">MIGVclean</h1>
+    </div>
 
-
-    <nav>
+    <nav aria-label="Navegación principal">
       <a href="#productos">Productos</a>
       <a href="#nosotros">Nosotros</a>
       <a href="#contacto">Contacto</a>
     </nav>
   </header>
 
-  <!-- HERO -->
+  <!-- BANNER PRINCIPAL -->
   <div class="landing" id="inicio">
     <div class="overlay"></div>
+
     <div class="contenedor">
-      <h1 data-bg="ruta foto banner">NOSOTROS</h1>
-      <h1 data-bg="ruta foto banner">OFERTAS</h1>
-      <h1 data-bg="ruta foto banner">CONÓCENOS</h1>
-      <h1 data-bg="ruta foto banner">NUESTROS PRODUCTOS</h1>
+      <h1 data-bg="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1800&q=85">
+        LIMPIEZA PARA TU HOGAR
+      </h1>
+
+      <h1 data-bg="https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=1800&q=85">
+        OFERTAS
+      </h1>
+
+      <h1 data-bg="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=1800&q=85">
+        CONÓCENOS
+      </h1>
+
+      <h1 data-bg="https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?auto=format&fit=crop&w=1800&q=85">
+        NUESTROS PRODUCTOS
+      </h1>
     </div>
   </div>
 
   <!-- PRODUCTOS -->
   <section id="productos">
     <h3>Nuestros Productos</h3>
+
     <div class="productos">
+
       <div class="card">
-        <img src="ruta foto producto" alt="Confort">
+        <img src="https://placehold.co/600x400/e3f2fd/0b3c5d?text=Confort" alt="Papel higiénico Confort">
         <div class="content">
           <h4>Confort</h4>
           <p>Confort Elite 50 metros x 4.</p>
         </div>
       </div>
+
       <div class="card">
-        <img src="ruta foto producto" alt="paños amarillos">
+        <img src="https://placehold.co/600x400/e3f2fd/0b3c5d?text=Pa%C3%B1os+amarillos" alt="Paños amarillos">
         <div class="content">
           <h4>Paños amarillos</h4>
-          <p>Paños amarillos 30x30 / 3 unidades.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="ruta foto producto" alt="Lavalozas">
-        <div class="content">
-          <h4>Lavalozas</h4>
-          <p>Lavalozas Quix concentrado 400ml</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="ruta foto producto" alt="Cloro">
-        <div class="content">
-          <h4>Cloro</h4>
-          <p>Clorox 750ml</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="ruta foto producto" alt="Esponjas">
-        <div class="content">
-          <h4>Esponjas</h4>
-          <p>Esponjas 4 unidades</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="ruta foto producto" alt="Cif">
-        <div class="content">
-          <h4>Cif</h4>
-          <p>Cif 750ml</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="ruta foto producto" alt="Guantes amarillos">
-        <div class="content">
-          <h4>Guantes amarillos</h4>
-          <p>Guantes amarillos para proteger tus manos .</p>
-        </div>
-      </div>
-       <div class="card">
-        <img src="ruta foto producto" alt="Escoba">
-        <div class="content">
-          <h4>Escoba</h4>
-          <p>Escoba cerdas plasticas + palo</p>
+          <p>Paños amarillos 30 x 30 cm, 3 unidades.</p>
         </div>
       </div>
 
+      <div class="card">
+        <img src="https://placehold.co/600x400/e3f2fd/0b3c5d?text=Lavalozas" alt="Lavalozas Quix">
+        <div class="content">
+          <h4>Lavalozas</h4>
+          <p>Lavalozas Quix concentrado 400 ml.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://placehold.co/600x400/e3f2fd/0b3c5d?text=Cloro" alt="Cloro Clorox">
+        <div class="content">
+          <h4>Cloro</h4>
+          <p>Clorox 750 ml.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://placehold.co/600x400/e3f2fd/0b3c5d?text=Esponjas" alt="Esponjas de limpieza">
+        <div class="content">
+          <h4>Esponjas</h4>
+          <p>Esponjas, paquete de 4 unidades.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://placehold.co/600x400/e3f2fd/0b3c5d?text=Cif" alt="Limpiador Cif">
+        <div class="content">
+          <h4>Cif</h4>
+          <p>Cif 750 ml.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://placehold.co/600x400/e3f2fd/0b3c5d?text=Guantes" alt="Guantes amarillos de limpieza">
+        <div class="content">
+          <h4>Guantes amarillos</h4>
+          <p>Guantes para proteger tus manos durante la limpieza.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://placehold.co/600x400/e3f2fd/0b3c5d?text=Escoba" alt="Escoba con palo">
+        <div class="content">
+          <h4>Escoba</h4>
+          <p>Escoba de cerdas plásticas con palo.</p>
+        </div>
+      </div>
+
+    </div>
   </section>
 
   <!-- NOSOTROS -->
   <section id="nosotros">
     <h3>Sobre Nosotros</h3>
-    <p style="max-width:700px;margin:0 auto;font-size:1.1rem;text-align: justify;">
-    Somos un emprendimiento familiar dedicado a la venta al detalle de insumos de aseo, nacido con la idea simple pero importante de ayudar a mantener los hogares y espacios de trabajo limpios, ordenados y seguros. Creemos que el aseo no es solo una tarea diaria, sino una forma de cuidar a quienes más queremos.   
+
+    <p class="texto-nosotros">
+      Somos un emprendimiento familiar dedicado a la venta al detalle de insumos de aseo, nacido con la idea simple pero importante de ayudar a mantener los hogares y espacios de trabajo limpios, ordenados y seguros. Creemos que el aseo no es solo una tarea diaria, sino una forma de cuidar a quienes más queremos.
     </p>
-    <p style="max-width:700px;margin:0 auto;font-size:1.1rem;text-align: justify;">
-    Trabajamos día a día para ofrecer productos de buena calidad, a precios justos y en cantidades adecuadas para cada necesidad, evitando que nuestros clientes tengan que gastar de más. Nos gusta atender de forma cercana, escuchando y recomendando lo que realmente sirve, como se hace entre vecinos.
+
+    <p class="texto-nosotros">
+      Trabajamos día a día para ofrecer productos de buena calidad, a precios justos y en cantidades adecuadas para cada necesidad, evitando que nuestros clientes tengan que gastar de más. Nos gusta atender de forma cercana, escuchando y recomendando lo que realmente sirve, como se hace entre vecinos.
     </p>
-    <p style="max-width:700px;margin:0 auto;font-size:1.1rem;text-align: justify;">
-    Nuestro compromiso es brindar un servicio honesto, responsable y amable, apoyando a la comunidad local y construyendo relaciones basadas en la confianza. Queremos ser tu opción de siempre cuando pienses en limpieza, higiene y cuidado del hogar.
+
+    <p class="texto-nosotros">
+      Nuestro compromiso es brindar un servicio honesto, responsable y amable, apoyando a la comunidad local y construyendo relaciones basadas en la confianza. Queremos ser tu opción de siempre cuando pienses en limpieza, higiene y cuidado del hogar.
     </p>
   </section>
 
   <!-- CONTACTO -->
   <section id="contacto">
     <h3>Contáctanos</h3>
+
     <p><strong>📞 Teléfono:</strong> +56 9 2377 0059</p>
     <p><strong>📧 Correo:</strong> migvclean@gmail.com</p>
-    <p><strong>🕒 Horario:</strong> Lunes a viernes de 6:00 a 19:00 hrs. - Domingo y festivos de 6:00 a 18:00 hrs.</p>
-    <a href="https://www.instagram.com/panificadorabustos/" target="_blank">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <p>
+      <strong>🕒 Horario:</strong>
+      Lunes a viernes de 6:00 a 19:00 hrs.
+      — Domingo y festivos de 6:00 a 18:00 hrs.
+    </p>
+
+    <a
+      href="https://www.instagram.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Visitar Instagram"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M7.5 2C4.46 2 2 4.46 2 7.5v9C2 19.54 4.46 22 7.5 22h9c3.04 0 5.5-2.46 5.5-5.5v-9C22 4.46 19.54 2 16.5 2h-9zm0 2h9C18.43 4 20 5.57 20 7.5v9c0 1.93-1.57 3.5-3.5 3.5h-9C5.57 20 4 18.43 4 16.5v-9C4 5.57 5.57 4 7.5 4zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm5.75-.75a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5z"/>
       </svg>
+      Instagram
     </a>
   </section>
 
+  <!-- PIE DE PÁGINA -->
   <footer>
-    © 2025 MIGVclean - Todos los derechos reservados
+    © 2026 MIGVclean - Todos los derechos reservados
   </footer>
 
-  <!-- BOTÓN WHATSAPP -->
-  <a href="https://wa.me/56934297927?text=Hola%20Panificadora%20Bustos,%20quiero%20hacer%20un%20pedido%20de%20pan."
-     class="whatsapp-float"
-     target="_blank"
-     title="Chatea con nosotros por WhatsApp">
-    <svg viewBox="0 0 32 32">
+  <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+  <a
+    id="whatsapp-button"
+    class="whatsapp-float"
+    href="https://wa.me/56923770059?text=Hola%20MIGVclean%2C%20quiero%20consultar%20por%20sus%20productos%20de%20aseo."
+    target="_blank"
+    rel="noopener noreferrer"
+    title="Contáctanos por WhatsApp"
+    aria-label="Contactar a MIGVclean por WhatsApp"
+  >
+    <svg viewBox="0 0 32 32" aria-hidden="true">
       <path d="M16 .6C7.5.6.6 7.5.6 16c0 2.8.8 5.5 2.2 7.9L0 32l8.4-2.2c2.3 1.3 5 2 7.8 2 8.5 0 15.4-6.9 15.4-15.4S24.5.6 16 .6zm0 28.2c-2.4 0-4.8-.6-6.9-1.8l-.5-.3-5 1.3 1.3-4.9-.3-.5c-1.4-2.1-2.1-4.6-2.1-7.1C2.5 8.5 8.6 2.5 16 2.5s13.5 6.1 13.5 13.5-6 12.8-13.5 12.8zm7.5-9.5c-.4-.2-2.3-1.1-2.6-1.2-.3-.1-.5-.2-.7.2s-.8 1.2-1 1.4c-.2.2-.4.3-.8.1s-1.5-.6-2.9-1.9c-1.1-1-1.9-2.3-2.1-2.7s0-.6.2-.8.5-.5.7-.7c.2-.2.3-.4.5-.7.2-.2.1-.5 0-.7-.1-.2-.7-1.8-1-2.4-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.7.1-1.1.5s-1.4 1.3-1.4 3.2 1.4 3.8 1.6 4.1c.2.3 2.7 4.1 6.6 5.8.9.4 1.6.6 2.1.8.9.3 1.7.3 2.3.2.7-.1 2.3-1 2.7-1.9.3-.9.3-1.6.2-1.8-.1-.2-.4-.3-.8-.5z"/>
     </svg>
   </a>
 
+  <!-- CAMBIO DE FONDO AL PASAR EL MOUSE -->
   <script>
-    // Cambia fondo del banner al pasar el mouse
-    const hero = document.querySelector('.landing');
-    const titles = document.querySelectorAll('.landing h1');
-    titles.forEach(t => {
-      t.addEventListener('mouseenter', () => {
-        const bg = t.getAttribute('data-bg');
-        hero.style.backgroundImage = `url('${bg}')`;
+    document.addEventListener('DOMContentLoaded', function () {
+      const hero = document.querySelector('.landing');
+      const titles = document.querySelectorAll('.landing h1');
+
+      titles.forEach(function (title) {
+        title.addEventListener('mouseenter', function () {
+          const background = title.getAttribute('data-bg');
+
+          if (background) {
+            hero.style.backgroundImage =
+              "linear-gradient(135deg, rgba(0,0,0,.35), rgba(11,60,93,.2)), url('" +
+              background +
+              "')";
+          }
+        });
       });
     });
   </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
