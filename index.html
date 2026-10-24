@@ -303,6 +303,125 @@
       fill: white;
     }
 
+
+
+    /* CARRITO DE COMPRAS */
+    .cart-nav-button {
+      border: 0;
+      border-radius: 999px;
+      padding: 0.55rem 0.9rem;
+      background: var(--blue-dark);
+      color: white;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .cart-nav-button:hover { background: var(--blue-main); transform: translateY(-1px); }
+    .cart-count {
+      display: inline-flex;
+      min-width: 23px;
+      height: 23px;
+      align-items: center;
+      justify-content: center;
+      margin-left: 4px;
+      padding: 0 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--blue-dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .add-to-cart {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.75rem 1rem;
+      border: 0;
+      border-radius: 8px;
+      background: var(--blue-main);
+      color: white;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .add-to-cart:hover { background: var(--blue-dark); transform: translateY(-1px); }
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: stretch;
+      justify-content: flex-end;
+      background: rgba(0,0,0,0.5);
+    }
+    .cart-overlay.is-open { display: flex; }
+    .cart-panel {
+      width: min(100%, 440px);
+      height: 100%;
+      overflow-y: auto;
+      padding: 1.4rem;
+      background: #fffdf8;
+      box-shadow: -5px 0 20px rgba(0,0,0,0.2);
+    }
+    .cart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #d8e3eb;
+    }
+    .cart-header h2 { font-size: 1.45rem; color: var(--blue-dark); }
+    .cart-close {
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 50%;
+      background: #e3f2fd;
+      color: var(--blue-dark);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .cart-note { margin: 1rem 0; color: var(--gray-700); font-size: 0.9rem; }
+    .cart-items { display: grid; gap: 0.8rem; }
+    .cart-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.7rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid #e3eaf0;
+    }
+    .cart-item-name { font-weight: 600; }
+    .cart-item-controls { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.6rem; }
+    .quantity-button, .remove-item {
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: white;
+      color: var(--blue-dark);
+      min-width: 32px;
+      min-height: 32px;
+      cursor: pointer;
+      font: inherit;
+    }
+    .remove-item { padding: 0.25rem 0.5rem; color: #b42318; }
+    .cart-empty { padding: 2rem 0; color: var(--gray-700); text-align: center; }
+    .cart-actions { display: grid; gap: 0.7rem; margin-top: 1.5rem; }
+    .checkout-button, .clear-cart-button {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 0;
+      border-radius: 8px;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .checkout-button { background: #25D366; color: #083b22; }
+    .checkout-button:hover { background: #1fba59; }
+    .clear-cart-button { background: #e5e7eb; color: #374151; }
+    .checkout-button:disabled, .clear-cart-button:disabled { opacity: 0.5; cursor: not-allowed; }
+    body.cart-open { overflow: hidden; }
+
     @media (max-width: 768px) {
       .landing h1 {
         font-size: 2rem;
@@ -319,6 +438,20 @@
         margin: 0 0.4rem;
         font-size: 0.9rem;
       }
+
+      header.top nav {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+      }
+
+      .cart-nav-button {
+        padding: 0.4rem 0.65rem;
+        font-size: 0.85rem;
+      }
+
+      .cart-panel { padding: 1rem; }
 
       .barra-aviso {
         font-size: 0.8rem;
@@ -349,6 +482,9 @@
       <a href="#productos">Productos</a>
       <a href="#nosotros">Nosotros</a>
       <a href="#contacto">Contacto</a>
+      <button type="button" class="cart-nav-button" id="open-cart" aria-label="Abrir carrito de compras">
+        🛒 Carrito <span id="cart-count" class="cart-count">0</span>
+      </button>
     </nav>
   </header>
 
@@ -373,6 +509,7 @@
         <div class="content">
           <h4>Confort</h4>
           <p>Confort Elite 50 metros x 4.</p>
+          <button type="button" class="add-to-cart" data-name="Confort">Añadir al carrito</button>
         </div>
       </div>
 
@@ -381,6 +518,7 @@
         <div class="content">
           <h4>Paños amarillos</h4>
           <p>Paños amarillos 30x30 / 3 unidades.</p>
+          <button type="button" class="add-to-cart" data-name="Paños amarillos">Añadir al carrito</button>
         </div>
       </div>
 
@@ -389,6 +527,7 @@
         <div class="content">
           <h4>Lavalozas</h4>
           <p>Lavalozas Quix concentrado 400 ml.</p>
+          <button type="button" class="add-to-cart" data-name="Lavalozas">Añadir al carrito</button>
         </div>
       </div>
 
@@ -397,6 +536,7 @@
         <div class="content">
           <h4>Cloro</h4>
           <p>Clorox 750 ml.</p>
+          <button type="button" class="add-to-cart" data-name="Cloro">Añadir al carrito</button>
         </div>
       </div>
 
@@ -405,6 +545,7 @@
         <div class="content">
           <h4>Esponjas</h4>
           <p>Esponjas 4 unidades.</p>
+          <button type="button" class="add-to-cart" data-name="Esponjas">Añadir al carrito</button>
         </div>
       </div>
 
@@ -413,6 +554,7 @@
         <div class="content">
           <h4>Cif</h4>
           <p>Cif 750 ml.</p>
+          <button type="button" class="add-to-cart" data-name="Cif">Añadir al carrito</button>
         </div>
       </div>
 
@@ -421,6 +563,7 @@
         <div class="content">
           <h4>Guantes amarillos</h4>
           <p>Guantes amarillos para proteger tus manos.</p>
+          <button type="button" class="add-to-cart" data-name="Guantes amarillos">Añadir al carrito</button>
         </div>
       </div>
 
@@ -429,6 +572,7 @@
         <div class="content">
           <h4>Escoba</h4>
           <p>Escoba de cerdas plásticas con palo.</p>
+          <button type="button" class="add-to-cart" data-name="Escoba">Añadir al carrito</button>
         </div>
       </div>
     </div>
@@ -465,6 +609,22 @@
     </a>
   </section>
 
+  <!-- PANEL DEL CARRITO DE COMPRAS -->
+  <div class="cart-overlay" id="cart-overlay" aria-hidden="true">
+    <aside class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+      <div class="cart-header">
+        <h2 id="cart-title">Tu carrito</h2>
+        <button type="button" class="cart-close" id="close-cart" aria-label="Cerrar carrito">&times;</button>
+      </div>
+      <p class="cart-note">Revisa tus productos y cantidades. Al confirmar, enviaremos tu pedido por WhatsApp para consultar precios y disponibilidad.</p>
+      <div class="cart-items" id="cart-items"></div>
+      <div class="cart-actions">
+        <button type="button" class="checkout-button" id="checkout-cart">Enviar pedido por WhatsApp</button>
+        <button type="button" class="clear-cart-button" id="clear-cart">Vaciar carrito</button>
+      </div>
+    </aside>
+  </div>
+
   <!-- PIE DE PÁGINA -->
   <footer>
     © 2025 MIGVclean - Todos los derechos reservados
@@ -498,6 +658,156 @@
         }
       });
     });
+
+    // CARRITO: conserva los productos en este navegador y permite enviar el pedido por WhatsApp.
+    const WHATSAPP_NUMBER = '56923770059';
+    const cartOverlay = document.getElementById('cart-overlay');
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartCount = document.getElementById('cart-count');
+    const checkoutButton = document.getElementById('checkout-cart');
+    const clearCartButton = document.getElementById('clear-cart');
+    const cartStorageKey = 'migvclean-cart-v1';
+    let cart = {};
+
+    try {
+      cart = JSON.parse(localStorage.getItem(cartStorageKey) || '{}');
+      if (!cart || typeof cart !== 'object' || Array.isArray(cart)) cart = {};
+    } catch (error) {
+      cart = {};
+    }
+
+    function saveCart() {
+      try { localStorage.setItem(cartStorageKey, JSON.stringify(cart)); } catch (error) {}
+    }
+
+    function totalUnits() {
+      return Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+    }
+
+    function renderCart() {
+      cartCount.textContent = totalUnits();
+      cartItemsContainer.innerHTML = '';
+      const entries = Object.entries(cart);
+
+      if (entries.length === 0) {
+        cartItemsContainer.innerHTML = '<p class="cart-empty">Tu carrito está vacío. Agrega productos para comenzar.</p>';
+      } else {
+        entries.forEach(([name, item]) => {
+          const row = document.createElement('div');
+          row.className = 'cart-item';
+
+          const details = document.createElement('div');
+          const productName = document.createElement('div');
+          productName.className = 'cart-item-name';
+          productName.textContent = name;
+          const controls = document.createElement('div');
+          controls.className = 'cart-item-controls';
+
+          const minus = document.createElement('button');
+          minus.type = 'button';
+          minus.className = 'quantity-button';
+          minus.textContent = '−';
+          minus.setAttribute('aria-label', 'Restar una unidad de ' + name);
+          minus.addEventListener('click', () => changeQuantity(name, -1));
+
+          const quantity = document.createElement('span');
+          quantity.textContent = item.quantity;
+          quantity.setAttribute('aria-label', 'Cantidad');
+
+          const plus = document.createElement('button');
+          plus.type = 'button';
+          plus.className = 'quantity-button';
+          plus.textContent = '+';
+          plus.setAttribute('aria-label', 'Agregar una unidad de ' + name);
+          plus.addEventListener('click', () => changeQuantity(name, 1));
+
+          controls.append(minus, quantity, plus);
+          details.append(productName, controls);
+
+          const remove = document.createElement('button');
+          remove.type = 'button';
+          remove.className = 'remove-item';
+          remove.textContent = 'Quitar';
+          remove.addEventListener('click', () => {
+            delete cart[name];
+            saveCart();
+            renderCart();
+          });
+
+          row.append(details, remove);
+          cartItemsContainer.appendChild(row);
+        });
+      }
+
+      checkoutButton.disabled = entries.length === 0;
+      clearCartButton.disabled = entries.length === 0;
+    }
+
+    function changeQuantity(name, amount) {
+      if (!cart[name]) return;
+      cart[name].quantity += amount;
+      if (cart[name].quantity <= 0) delete cart[name];
+      saveCart();
+      renderCart();
+    }
+
+    function openCart() {
+      cartOverlay.classList.add('is-open');
+      cartOverlay.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('cart-open');
+      document.getElementById('close-cart').focus();
+    }
+
+    function closeCart() {
+      cartOverlay.classList.remove('is-open');
+      cartOverlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('cart-open');
+      document.getElementById('open-cart').focus();
+    }
+
+    document.querySelectorAll('.add-to-cart').forEach((button) => {
+      button.addEventListener('click', () => {
+        const name = button.dataset.name;
+        if (!cart[name]) cart[name] = { quantity: 0 };
+        cart[name].quantity += 1;
+        saveCart();
+        renderCart();
+        button.textContent = 'Agregado ✓';
+        window.setTimeout(() => { button.textContent = 'Añadir al carrito'; }, 1200);
+      });
+    });
+
+    document.getElementById('open-cart').addEventListener('click', openCart);
+    document.getElementById('close-cart').addEventListener('click', closeCart);
+    cartOverlay.addEventListener('click', (event) => {
+      if (event.target === cartOverlay) closeCart();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && cartOverlay.classList.contains('is-open')) closeCart();
+    });
+
+    clearCartButton.addEventListener('click', () => {
+      cart = {};
+      saveCart();
+      renderCart();
+    });
+
+    checkoutButton.addEventListener('click', () => {
+      const entries = Object.entries(cart);
+      if (entries.length === 0) return;
+      const lines = entries.map(([name, item]) => `• ${name} x ${item.quantity}`);
+      const message = [
+        'Hola MIGVclean, quiero realizar el siguiente pedido:',
+        '',
+        ...lines,
+        '',
+        '¿Me pueden confirmar los precios, disponibilidad y costo de despacho?'
+      ].join('\n');
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+
+    renderCart();
   </script>
 
 </body>
