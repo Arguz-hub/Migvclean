@@ -242,6 +242,13 @@
     .cart-total-row { display: flex; justify-content: space-between; gap: 1rem; margin: 0.25rem 0; }
     .cart-total-main { font-size: 1.15rem; font-weight: 700; }
     .cart-total-note { margin-top: 0.5rem; color: var(--gray-700); font-size: 0.82rem; }
+    .delivery-field { margin: 1rem 0; text-align: left; }
+    .delivery-field label { display: block; margin-bottom: 0.4rem; font-weight: 600; }
+    .delivery-field select {
+      width: 100%; padding: 0.75rem; border: 1px solid #b8c7d6; border-radius: 8px;
+      background: white; color: var(--blue-dark); font: inherit;
+    }
+    .delivery-field small { display: block; margin-top: 0.4rem; color: var(--gray-700); }
 
     /* CONTACTO */
     #contacto a {
@@ -502,7 +509,7 @@
 
   <!-- BARRA DE AVISO -->
   <div class="barra-aviso">
-    🕒 Atención y entregas: de 8:00 a 16:00 hrs.
+    🚚 Despachos solo en comunas habilitadas de la Región Metropolitana · Atención y entregas: 8:00 a 16:00 hrs.
   </div>
 
   <!-- ENCABEZADO -->
@@ -654,7 +661,16 @@
       </div>
       <p class="cart-note">¡Ya casi está! Revisa los productos y las cantidades. Si alguno no tiene precio publicado, te lo confirmaremos por WhatsApp.</p>
       <div class="cart-items" id="cart-items"></div>
+      <div class="delivery-field">
+        <label for="delivery-commune">Comuna de despacho (Región Metropolitana)</label>
+        <select id="delivery-commune" required>
+          <option value="">Selecciona tu comuna</option>
+        </select>
+        <small id="delivery-info">El costo se calcula automáticamente al seleccionar la comuna. Tarifas estimadas desde San Ramón.</small>
+      </div>
       <div class="cart-total-box">
+        <div class="cart-total-row"><span>Productos</span><span id="cart-products-total">$0</span></div>
+        <div class="cart-total-row"><span>Despacho</span><span id="delivery-cost">$0</span></div>
         <div class="cart-total-row cart-total-main"><span>Total calculado</span><span id="cart-total">$0</span></div>
         <div class="cart-total-note" id="cart-total-note"></div>
       </div>
@@ -711,6 +727,56 @@
     const checkoutButton = document.getElementById('checkout-cart');
     const clearCartButton = document.getElementById('clear-cart');
     const cartStorageKey = 'migvclean-cart-v1';
+    const deliveryCommune = document.getElementById('delivery-commune');
+
+    // Tarifas referenciales por comuna desde San Ramón (no equivalen a kilometraje exacto por ruta).
+    // Se excluyen Colina/Chicureo, Lampa, Lo Barnechea y Vitacura.
+    const communesByRate = {
+      3500: ['San Ramón', 'La Cisterna', 'San Miguel', 'La Granja', 'La Pintana', 'El Bosque', 'Pedro Aguirre Cerda', 'Lo Espejo', 'San Joaquín'],
+      4000: ['La Florida', 'Macul', 'Ñuñoa', 'Santiago', 'Recoleta', 'Independencia', 'Conchalí', 'Huechuraba', 'Quilicura', 'Renca', 'Cerro Navia', 'Lo Prado', 'Pudahuel', 'Estación Central', 'Cerrillos', 'Maipú', 'Peñalolén', 'La Reina', 'Providencia', 'Quinta Normal', 'Padre Hurtado', 'Puente Alto', 'Pirque', 'Calera de Tango', 'San Bernardo'],
+      5000: ['Las Condes', 'Lo Barnechea', 'Vitacura', 'Tiltil', 'Buin', 'Paine', 'Melipilla', 'Curacaví', 'María Pinto', 'Alhué', 'San Pedro', 'Talagante', 'El Monte', 'Isla de Maipo', 'Peñaflor', 'Lampa', 'Colina', 'San José de Maipo']
+    };
+    // Lista de comunas habilitadas: se filtran expresamente las zonas no atendidas.
+    const excludedCommunes = new Set(['Lampa', 'Colina', 'Lo Barnechea', 'Vitacura']);
+    Object.entries(communesByRate).forEach(([rate, communes]) => {
+      communes.forEach((commune) => {
+        if (excludedCommunes.has(commune)) return;
+        const option = document.createElement('option');
+        option.value = commune;
+        option.textContent = commune;
+        option.dataset.deliveryCost = rate;
+        deliveryCommune.appendChild(option);
+      });
+    });
+
+    function getDeliveryQuote() {
+      const option = deliveryCommune.options[deliveryCommune.selectedIndex];
+      if (!option || !option.value) return { cost: 0, message: 'Comuna no seleccionada.' };
+      const cost = Number(option.dataset.deliveryCost || 5000);
+      let message = 'Tarifa estimada para la comuna seleccionada.';
+      if (cost === 3500) message = 'Tarifa estimada: hasta 8 km desde San Ramón.';
+      else if (cost === 4000) message = 'Tarifa estimada: más de 8 y hasta 16 km desde San Ramón.';
+      else message = 'Tarifa estimada: más de 16 km desde San Ramón.';
+      return { cost, message };
+    }
+
+    function updateDeliverySummary() {
+      const selected = Boolean(deliveryCommune.value);
+      const delivery = getDeliveryQuote();
+      const entries = Object.values(cart);
+      const productsTotal = entries.reduce((sum, item) => sum + (Number.isFinite(item.price) && item.price >= 0 ? item.price * item.quantity : 0), 0);
+      const unitsWithoutPrice = entries.reduce((sum, item) => sum + (Number.isFinite(item.price) && item.price >= 0 ? 0 : item.quantity), 0);
+      document.getElementById('cart-products-total').textContent = formatCLP(productsTotal);
+      document.getElementById('delivery-cost').textContent = selected ? formatCLP(delivery.cost) : 'Selecciona comuna';
+      document.getElementById('cart-total').textContent = formatCLP(productsTotal + (selected ? delivery.cost : 0));
+      document.getElementById('delivery-info').textContent = selected
+        ? `${delivery.message} Despacho: ${formatCLP(delivery.cost)}.`
+        : 'El costo se calcula automáticamente al seleccionar la comuna. Tarifas estimadas desde San Ramón.';
+      document.getElementById('cart-total-note').textContent = unitsWithoutPrice > 0
+        ? `Total parcial: hay ${unitsWithoutPrice} unidad(es) sin precio definido; no están incluidas.`
+        : 'Total estimado de productos con precio publicado más despacho.';
+    }
+    deliveryCommune.addEventListener('change', updateDeliverySummary);
     let cart = {};
 
     try {
@@ -799,10 +865,7 @@
         });
       }
 
-      document.getElementById('cart-total').textContent = formatCLP(calculatedTotal);
-      document.getElementById('cart-total-note').textContent = unitsWithoutPrice > 0
-        ? 'Hay ' + unitsWithoutPrice + ' unidad(es) sin precio definido. El total es parcial y no incluye esos productos ni el despacho.'
-        : 'Total de productos con precio definido. No incluye despacho.';
+      updateDeliverySummary();
       checkoutButton.disabled = entries.length === 0;
       clearCartButton.disabled = entries.length === 0;
     }
@@ -862,6 +925,12 @@
     checkoutButton.addEventListener('click', () => {
       const entries = Object.entries(cart);
       if (entries.length === 0) return;
+      if (!deliveryCommune.value) {
+        deliveryCommune.focus();
+        document.getElementById('delivery-info').textContent = 'Por favor, selecciona tu comuna antes de enviar el pedido.';
+        return;
+      }
+      const delivery = getDeliveryQuote();
       let knownTotal = 0;
       let pendingCount = 0;
       const lines = entries.map(([name, item]) => {
@@ -878,10 +947,14 @@
         '',
         ...lines,
         '',
-        ` Total de los productos con precio publicado: ${formatCLP(knownTotal)}`,
+        `Comuna de despacho: ${deliveryCommune.value}`,
+        delivery.message,
+        `Total de los productos con precio publicado: ${formatCLP(knownTotal)}`,
+        `Despacho estimado: ${formatCLP(delivery.cost)}`,
+        `Total parcial estimado: ${formatCLP(knownTotal + delivery.cost)}`,
         ...(pendingCount > 0 ? [`Hay ${pendingCount} producto(s) cuyo precio quisiera consultar.`] : []),
         '',
-        '¿Me podrían confirmar la disponibilidad y el valor del despacho, por favor?',
+        '¿Me podrían confirmar la disponibilidad y el costo final del despacho, por favor?',
         '¡Muchas gracias!'
       ].join('\n');
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
