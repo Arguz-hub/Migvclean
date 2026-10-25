@@ -733,11 +733,14 @@
     // Se excluyen Colina/Chicureo, Lampa, Lo Barnechea y Vitacura.
     const communesByRate = {
       3500: ['San Ramón', 'La Cisterna', 'San Miguel', 'La Granja', 'La Pintana', 'El Bosque', 'Pedro Aguirre Cerda', 'Lo Espejo', 'San Joaquín'],
-      4000: ['La Florida', 'Macul', 'Ñuñoa', 'Santiago', 'Recoleta', 'Independencia', 'Conchalí', 'Huechuraba', 'Quilicura', 'Renca', 'Cerro Navia', 'Lo Prado', 'Pudahuel', 'Estación Central', 'Cerrillos', 'Maipú', 'Peñalolén', 'La Reina', 'Providencia', 'Quinta Normal', 'Padre Hurtado', 'Puente Alto', 'Pirque', 'Calera de Tango', 'San Bernardo'],
-      5000: ['Las Condes', 'Lo Barnechea', 'Vitacura', 'Tiltil', 'Buin', 'Paine', 'Melipilla', 'Curacaví', 'María Pinto', 'Alhué', 'San Pedro', 'Talagante', 'El Monte', 'Isla de Maipo', 'Peñaflor', 'Lampa', 'Colina', 'San José de Maipo']
+      4000: ['La Florida', 'Macul', 'Ñuñoa', 'Santiago', 'Recoleta', 'Independencia', 'Conchalí', 'Huechuraba', 'Renca', 'Cerro Navia', 'Lo Prado', 'Pudahuel', 'Estación Central', 'Cerrillos', 'Maipú', 'Peñalolén', 'La Reina', 'Providencia', 'Quinta Normal', 'Padre Hurtado', 'Puente Alto', 'Calera de Tango', 'San Bernardo'],
+      5000: ['Las Condes', 'Vitacura', 'Buin', 'Paine', 'Talagante', 'Isla de Maipo', 'Peñaflor','colina', 'Quilicura', 'San José de Maipo']
     };
     // Lista de comunas habilitadas: se filtran expresamente las zonas no atendidas.
     const excludedCommunes = new Set(['Lampa', 'Colina', 'Lo Barnechea', 'Vitacura']);
+    // Genera las opciones y las muestra en orden alfabético, sin cambiar sus tarifas.
+    const communeOptions = [];
+
     Object.entries(communesByRate).forEach(([rate, communes]) => {
       communes.forEach((commune) => {
         if (excludedCommunes.has(commune)) return;
@@ -745,9 +748,15 @@
         option.value = commune;
         option.textContent = commune;
         option.dataset.deliveryCost = rate;
-        deliveryCommune.appendChild(option);
+        communeOptions.push(option);
       });
     });
+
+    communeOptions.sort((a, b) =>
+      a.textContent.localeCompare(b.textContent, 'es', { sensitivity: 'base' })
+    );
+
+    communeOptions.forEach((option) => deliveryCommune.appendChild(option));
 
     function getDeliveryQuote() {
       const option = deliveryCommune.options[deliveryCommune.selectedIndex];
